@@ -1,4 +1,4 @@
-# BYU 590R Monorepo
+# Future of the Hunt
 
 Laravel backend + Angular frontend with AWS EC2 deployment.
 
