@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "future-of-the-hunt",
+  "compatibility_date": "2026-07-30",
+  "assets": {
+    "directory": "./dist/byu-590r-builder/browser",
+    "not_found_handling": "single-page-application"
+  }
+}
