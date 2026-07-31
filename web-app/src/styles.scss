@@ -3,6 +3,8 @@
 @use "./assets/styles/spacing" as spacing;
 @use "./assets/styles/fonts" as fonts;
 
+.chat-recommendations{margin-top:9px;padding:10px;border:1px solid #cfe0d3;border-radius:9px;background:#f7faf7}.chat-recommendations>strong{color:#164d30;font-size:.54rem}.chat-recommendations>div{margin-top:7px;display:flex;gap:5px;flex-wrap:wrap}.chat-recommendations>div button{padding:6px 8px;display:flex;align-items:center;gap:4px;border:1px solid #d5e2d8;border-radius:6px;color:#315a41;background:#fff;font-size:.43rem;font-weight:800}.chat-recommendations>div span{font-size:.8rem}.chat-recommendations>small{margin-top:7px;display:block;color:#687970;font-size:.42rem}.chat-recommendations footer{margin-top:8px;display:grid;grid-template-columns:repeat(2,1fr);gap:5px}.chat-recommendations footer button{min-height:31px;border:1px solid #bcd2c1;border-radius:5px;color:#12653b;background:#fff;font-size:.42rem;font-weight:900}.chat-recommendations footer button:first-child{border-color:#087343;color:#fff;background:#087343}
+
 html {
   @include mat.theme(
     (

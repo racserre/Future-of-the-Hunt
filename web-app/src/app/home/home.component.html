@@ -8,28 +8,50 @@
       </span>
     </a>
 
-    <button class="mobile-menu-button" (click)="mobileMenuOpen = !mobileMenuOpen" [attr.aria-expanded]="mobileMenuOpen" aria-label="Open navigation menu">
-      <mat-icon>{{ mobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+    <button
+      class="mobile-menu-button"
+      (click)="mobileMenuOpen = !mobileMenuOpen"
+      [attr.aria-expanded]="mobileMenuOpen"
+      aria-label="Open navigation menu"
+    >
+      <mat-icon>{{ mobileMenuOpen ? "close" : "menu" }}</mat-icon>
     </button>
 
-    <nav class="main-nav" [class.mobile-open]="mobileMenuOpen" aria-label="Main navigation">
-      <button [class.active]="activeView === 'shop'" (click)="setView('shop')">Shop</button>
-      <button [class.active]="activeView === 'map'" (click)="openStoreMap()">Live Store Map</button>
-      <button [class.active]="activeView === 'employee'" (click)="setView('employee')">Employee Demo</button>
+    <nav
+      class="main-nav"
+      [class.mobile-open]="mobileMenuOpen"
+      aria-label="Main navigation"
+    >
+      <button [class.active]="activeView === 'shop'" (click)="setView('shop')">
+        Shop
+      </button>
+      <button [class.active]="activeView === 'map'" (click)="openStoreMap()">
+        Live Store Map
+      </button>
     </nav>
-    @if (mobileMenuOpen) { <button class="mobile-menu-backdrop" (click)="mobileMenuOpen = false" aria-label="Close navigation menu"></button> }
+    @if (mobileMenuOpen) {
+      <button
+        class="mobile-menu-backdrop"
+        (click)="mobileMenuOpen = false"
+        aria-label="Close navigation menu"
+      ></button>
+    }
 
     <div class="header-actions">
       <div class="store-select">
         <mat-icon>location_on</mat-icon>
-        <span><small>Your store</small><strong>Future Store #2031</strong></span>
+        <span
+          ><small>Your store</small><strong>Future Store #2031</strong></span
+        >
       </div>
       <button class="icon-button cart-button" aria-label="Shopping cart">
         <mat-icon>shopping_cart</mat-icon><span>{{ cartCount }}</span>
       </button>
       <button class="account-button" (click)="openCustomerAccount()">
         <mat-icon>person</mat-icon>
-        <span>{{ customerLoggedIn ? (customerName || 'My Account') : 'Sign in' }}</span>
+        <span>{{
+          customerLoggedIn ? customerName || "My Account" : "Sign in"
+        }}</span>
       </button>
     </div>
   </header>
@@ -37,8 +59,12 @@
   <div class="concept-bar">
     <span><mat-icon>science</mat-icon> 2031 Concept Demo — Simulated Data</span>
     <div>
-      <button (click)="startDemo()"><mat-icon>play_circle</mat-icon> Start Future Store Demo</button>
-      <button (click)="resetDemo()"><mat-icon>restart_alt</mat-icon> Reset Demo Data</button>
+      <button (click)="startDemo()">
+        <mat-icon>play_circle</mat-icon> Start Future Store Demo
+      </button>
+      <button (click)="resetDemo()">
+        <mat-icon>restart_alt</mat-icon> Reset Demo Data
+      </button>
     </div>
   </div>
 
@@ -46,27 +72,44 @@
     <div class="demo-guide">
       <span>DEMO {{ demoStep + 1 }}/{{ demoSteps.length }}</span>
       <strong>{{ demoSteps[demoStep] }}</strong>
-      <button (click)="nextDemoStep()">Next Demo Step <mat-icon>arrow_forward</mat-icon></button>
+      <button (click)="nextDemoStep()">
+        Next Demo Step <mat-icon>arrow_forward</mat-icon>
+      </button>
     </div>
   }
 
-  @if (activeView === 'intelligence') {
+  @if (activeView === "intelligence") {
     <main class="intelligence-page" id="top">
       <section class="executive-hero">
         <div class="executive-copy">
-          <p class="eyebrow"><span></span> DOLLAR TREE STORE INTELLIGENCE PLATFORM</p>
+          <p class="eyebrow">
+            <span></span> DOLLAR TREE STORE INTELLIGENCE PLATFORM
+          </p>
           <h1>Every store.<br /><em>One digital brain.</em></h1>
-          <p>Powered by Solink AI, the platform turns live store activity into faster action—protecting sales, reducing wasted labor, and helping every shelf stay ready for customers.</p>
+          <p>
+            Powered by Solink AI, the platform turns live store activity into
+            faster action—protecting sales, reducing wasted labor, and helping
+            every shelf stay ready for customers.
+          </p>
           <div class="executive-actions">
-            <button class="primary" (click)="openStoreMap()"><mat-icon>hub</mat-icon> Explore the live store</button>
-            <button (click)="setView('employee')"><mat-icon>badge</mat-icon> See the associate experience</button>
+            <button class="primary" (click)="openStoreMap()">
+              <mat-icon>hub</mat-icon> Explore the live store
+            </button>
           </div>
         </div>
         <div class="platform-model" aria-label="Three platform users">
-          <div class="platform-core"><img src="favicon.svg" alt="" /><span>STORE<br />INTELLIGENCE</span><small>Powered by Solink AI</small></div>
-          <button (click)="setView('shop')"><mat-icon>shopping_cart</mat-icon><strong>Customer</strong><span>Find it. Buy it. Done.</span></button>
-          <button (click)="setView('employee')"><mat-icon>badge</mat-icon><strong>Associate</strong><span>Know the next priority.</span></button>
-          <button (click)="setView('manager')"><mat-icon>monitoring</mat-icon><strong>Leader</strong><span>See it. Predict it. Act.</span></button>
+          <div class="platform-core">
+            <img src="favicon.svg" alt="" /><span>STORE<br />INTELLIGENCE</span
+            ><small>Powered by Solink AI</small>
+          </div>
+          <button (click)="setView('shop')">
+            <mat-icon>shopping_cart</mat-icon><strong>Customer</strong
+            ><span>Find it. Buy it. Done.</span>
+          </button>
+          <button (click)="setView('manager')">
+            <mat-icon>monitoring</mat-icon><strong>Leader</strong
+            ><span>See it. Predict it. Act.</span>
+          </button>
         </div>
       </section>
 
@@ -74,76 +117,185 @@
         @for (outcome of businessOutcomes; track outcome.label) {
           <article class="{{ outcome.tone }}">
             <mat-icon>{{ outcome.icon }}</mat-icon>
-            <div><strong>{{ outcome.value }}</strong><span>{{ outcome.label }}</span><small>{{ outcome.detail }}</small></div>
+            <div>
+              <strong>{{ outcome.value }}</strong
+              ><span>{{ outcome.label }}</span
+              ><small>{{ outcome.detail }}</small>
+            </div>
           </article>
         }
-        <p>Illustrative concept targets based on simulated data—not actual Dollar Tree results.</p>
+        <p>
+          Illustrative concept targets based on simulated data—not actual Dollar
+          Tree results.
+        </p>
       </section>
 
       <section class="closed-loop page-section">
         <div class="executive-section-heading">
-          <div><p class="eyebrow green">FROM SIGNAL TO BUSINESS OUTCOME</p><h2>An empty shelf becomes an automatic workflow.</h2></div>
+          <div>
+            <p class="eyebrow green">FROM SIGNAL TO BUSINESS OUTCOME</p>
+            <h2>An empty shelf becomes an automatic workflow.</h2>
+          </div>
           <span><i></i> Live simulated event</span>
         </div>
         <div class="workflow">
-          <article><b>1</b><mat-icon>videocam</mat-icon><strong>Solink detects</strong><span>Paper towel shelf is nearly empty.</span></article>
+          <article>
+            <b>1</b><mat-icon>videocam</mat-icon><strong>Solink detects</strong
+            ><span>Paper towel shelf is nearly empty.</span>
+          </article>
           <mat-icon>arrow_forward</mat-icon>
-          <article><b>2</b><mat-icon>inventory_2</mat-icon><strong>Inventory confirms</strong><span>52 units are ready in the backroom.</span></article>
+          <article>
+            <b>2</b><mat-icon>inventory_2</mat-icon
+            ><strong>Inventory confirms</strong
+            ><span>52 units are ready in the backroom.</span>
+          </article>
           <mat-icon>arrow_forward</mat-icon>
-          <article><b>3</b><mat-icon>assignment_add</mat-icon><strong>Bucky routes work</strong><span>Nearest available associate gets a 6-minute task.</span></article>
+          <article>
+            <b>3</b><mat-icon>assignment_add</mat-icon
+            ><strong>Bucky routes work</strong
+            ><span>Nearest available associate gets a 6-minute task.</span>
+          </article>
           <mat-icon>arrow_forward</mat-icon>
-          <article><b>4</b><mat-icon>check_circle</mat-icon><strong>Shelf recovers</strong><span>Availability returns before a sale is lost.</span></article>
+          <article>
+            <b>4</b><mat-icon>check_circle</mat-icon
+            ><strong>Shelf recovers</strong
+            ><span>Availability returns before a sale is lost.</span>
+          </article>
         </div>
-        <div class="workflow-result"><mat-icon>paid</mat-icon><strong>Business result</strong><span>More products available, fewer interruptions, and better use of every labor hour.</span></div>
+        <div class="workflow-result">
+          <mat-icon>paid</mat-icon><strong>Business result</strong
+          ><span
+            >More products available, fewer interruptions, and better use of
+            every labor hour.</span
+          >
+        </div>
       </section>
 
       <section class="executive-command page-section">
         <div class="executive-section-heading">
-          <div><p class="eyebrow green">EXECUTIVE COMMAND CENTER</p><h2>Move from dashboards to decisions.</h2></div>
+          <div>
+            <p class="eyebrow green">EXECUTIVE COMMAND CENTER</p>
+            <h2>Move from dashboards to decisions.</h2>
+          </div>
           <div class="executive-tabs">
-            <button [class.active]="executiveTab === 'store'" (click)="executiveTab = 'store'">Live Store</button>
-            <button [class.active]="executiveTab === 'district'" (click)="executiveTab = 'district'">District View</button>
-            <button [class.active]="executiveTab === 'recommendations'" (click)="executiveTab = 'recommendations'">AI Recommendations</button>
+            <button
+              [class.active]="executiveTab === 'store'"
+              (click)="executiveTab = 'store'"
+            >
+              Live Store
+            </button>
+            <button
+              [class.active]="executiveTab === 'district'"
+              (click)="executiveTab = 'district'"
+            >
+              District View
+            </button>
+            <button
+              [class.active]="executiveTab === 'recommendations'"
+              (click)="executiveTab = 'recommendations'"
+            >
+              AI Recommendations
+            </button>
           </div>
         </div>
 
-        @if (executiveTab === 'store') {
+        @if (executiveTab === "store") {
           <div class="executive-store-grid">
             <article class="living-store-card">
-              <div class="card-heading"><div><span>FUTURE STORE #2031</span><h3>Live digital twin</h3></div><b><i></i> Healthy</b></div>
-              <div class="mini-twin">
-                @for (aisle of [1,2,3,4,5,6,7,8,9,10,11,12]; track aisle) {
-                  <button [class.warning]="aisle === 4 || aisle === 6" [class.critical]="aisle === 8" (click)="openStoreMap()">A{{ aisle }}<i></i></button>
-                }
-                <span class="flow-dot customer"></span><span class="flow-dot associate"></span><span class="flow-dot associate second"></span>
+              <div class="card-heading">
+                <div>
+                  <span>FUTURE STORE #2031</span>
+                  <h3>Live digital twin</h3>
+                </div>
+                <b><i></i> Healthy</b>
               </div>
-              <div class="twin-key"><span><i class="healthy"></i>Ready</span><span><i class="attention"></i>Attention</span><span><i class="urgent"></i>Act now</span><span><i class="people"></i>Anonymous traffic</span></div>
+              <div class="mini-twin">
+                @for (
+                  aisle of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+                  track aisle
+                ) {
+                  <button
+                    [class.warning]="aisle === 4 || aisle === 6"
+                    [class.critical]="aisle === 8"
+                    (click)="openStoreMap()"
+                  >
+                    A{{ aisle }}<i></i>
+                  </button>
+                }
+                <span class="flow-dot customer"></span
+                ><span class="flow-dot associate"></span
+                ><span class="flow-dot associate second"></span>
+              </div>
+              <div class="twin-key">
+                <span><i class="healthy"></i>Ready</span
+                ><span><i class="attention"></i>Attention</span
+                ><span><i class="urgent"></i>Act now</span
+                ><span><i class="people"></i>Anonymous traffic</span>
+              </div>
             </article>
             <div class="store-decision-stack">
-              <article><span>ON-SHELF AVAILABILITY</span><strong>97.4%</strong><small>+2.1 pts vs. morning</small></article>
-              <article><span>CHECKOUT WAIT</span><strong>2:08</strong><small>Below 3-minute target</small></article>
-              <article class="action"><mat-icon>notifications_active</mat-icon><div><span>NEXT BEST ACTION</span><strong>Restock Aisle 8 now</strong><small>53 units in backroom · 6-minute task</small></div><button (click)="setView('employee')">Route task</button></article>
+              <article>
+                <span>ON-SHELF AVAILABILITY</span><strong>97.4%</strong
+                ><small>+2.1 pts vs. morning</small>
+              </article>
+              <article>
+                <span>CHECKOUT WAIT</span><strong>2:08</strong
+                ><small>Below 3-minute target</small>
+              </article>
+              <article class="action">
+                <mat-icon>notifications_active</mat-icon>
+                <div>
+                  <span>NEXT BEST ACTION</span
+                  ><strong>Restock Aisle 8 now</strong
+                  ><small>53 units in backroom · 6-minute task</small>
+                </div>
+                <button (click)="setView('employee')">Route task</button>
+              </article>
             </div>
           </div>
-        } @else if (executiveTab === 'district') {
+        } @else if (executiveTab === "district") {
           <div class="district-view">
-            <div class="district-summary"><strong>142</strong><span>Stores connected</span><strong>126</strong><span>Running normally</span><strong>13</strong><span>Need attention</span><strong>3</strong><span>Critical</span></div>
+            <div class="district-summary">
+              <strong>142</strong><span>Stores connected</span
+              ><strong>126</strong><span>Running normally</span
+              ><strong>13</strong><span>Need attention</span><strong>3</strong
+              ><span>Critical</span>
+            </div>
             <div class="district-stores">
               @for (store of districtStores; track store.id) {
-                <button (click)="store.id === '2031' ? setView('manager') : null">
-                  <i class="{{ store.status }}"></i><div><strong>Store {{ store.id }}</strong><span>{{ store.city }}</span><small>{{ store.issue }}</small></div><b>{{ store.score }}</b>
+                <button
+                  (click)="store.id === '2031' ? setView('manager') : null"
+                >
+                  <i class="{{ store.status }}"></i>
+                  <div>
+                    <strong>Store {{ store.id }}</strong
+                    ><span>{{ store.city }}</span
+                    ><small>{{ store.issue }}</small>
+                  </div>
+                  <b>{{ store.score }}</b>
                 </button>
               }
             </div>
-            <p class="district-note"><mat-icon>info</mat-icon> Six representative stores shown from a simulated 142-store district.</p>
+            <p class="district-note">
+              <mat-icon>info</mat-icon> Six representative stores shown from a
+              simulated 142-store district.
+            </p>
           </div>
         } @else {
           <div class="recommendation-board">
             @for (item of executiveRecommendations; track item.title) {
               <article>
                 <mat-icon>{{ item.icon }}</mat-icon>
-                <div><span>PREDICTIVE RECOMMENDATION</span><h3>{{ item.title }}</h3><p>{{ item.action }}</p><strong>{{ item.value }}</strong></div>
-                <aside><b>{{ item.confidence }}%</b><small>confidence</small><button (click)="setView('manager')">Review action</button></aside>
+                <div>
+                  <span>PREDICTIVE RECOMMENDATION</span>
+                  <h3>{{ item.title }}</h3>
+                  <p>{{ item.action }}</p>
+                  <strong>{{ item.value }}</strong>
+                </div>
+                <aside>
+                  <b>{{ item.confidence }}%</b><small>confidence</small
+                  ><button (click)="setView('manager')">Review action</button>
+                </aside>
               </article>
             }
           </div>
@@ -151,19 +303,51 @@
       </section>
 
       <section class="value-matrix page-section">
-        <div class="executive-section-heading"><div><p class="eyebrow green">WHY IT MATTERS</p><h2>Every capability earns its place.</h2></div></div>
+        <div class="executive-section-heading">
+          <div>
+            <p class="eyebrow green">WHY IT MATTERS</p>
+            <h2>Every capability earns its place.</h2>
+          </div>
+        </div>
         <div class="value-table">
-          <div class="value-head"><span>Capability</span><span>Operational change</span><span>Business value</span></div>
-          <div><strong>AI item finder</strong><span>Customers self-serve location and inventory questions.</span><b>Faster trips · fewer associate interruptions</b></div>
-          <div><strong>Vision-triggered restocking</strong><span>Tasks start when shelf conditions change.</span><b>Higher availability · fewer lost sales</b></div>
-          <div><strong>Predictive task routing</strong><span>Work goes to the nearest available associate.</span><b>More productive labor hours</b></div>
-          <div><strong>Truck intelligence</strong><span>Receiving plans adjust before delays reach the store.</span><b>Smoother unloading · less idle labor</b></div>
-          <div><strong>Executive digital twin</strong><span>Leaders see exceptions across stores in one view.</span><b>Faster decisions · scalable operations</b></div>
-          <div><strong>Intelligent Asset Protection</strong><span>Authorized leaders review unusual events, not people.</span><b>Lower risk · privacy-conscious investigations</b></div>
+          <div class="value-head">
+            <span>Capability</span><span>Operational change</span
+            ><span>Business value</span>
+          </div>
+          <div>
+            <strong>AI item finder</strong
+            ><span>Customers self-serve location and inventory questions.</span
+            ><b>Faster trips · fewer associate interruptions</b>
+          </div>
+          <div>
+            <strong>Vision-triggered restocking</strong
+            ><span>Tasks start when shelf conditions change.</span
+            ><b>Higher availability · fewer lost sales</b>
+          </div>
+          <div>
+            <strong>Predictive task routing</strong
+            ><span>Work goes to the nearest available associate.</span
+            ><b>More productive labor hours</b>
+          </div>
+          <div>
+            <strong>Truck intelligence</strong
+            ><span>Receiving plans adjust before delays reach the store.</span
+            ><b>Smoother unloading · less idle labor</b>
+          </div>
+          <div>
+            <strong>Executive digital twin</strong
+            ><span>Leaders see exceptions across stores in one view.</span
+            ><b>Faster decisions · scalable operations</b>
+          </div>
+          <div>
+            <strong>Intelligent Asset Protection</strong
+            ><span>Authorized leaders review unusual events, not people.</span
+            ><b>Lower risk · privacy-conscious investigations</b>
+          </div>
         </div>
       </section>
     </main>
-  } @else if (activeView === 'shop') {
+  } @else if (activeView === "shop") {
     <main id="top">
       <section class="hero-section">
         <div class="hero-orbit orbit-one"></div>
@@ -172,8 +356,10 @@
           <p class="eyebrow"><span></span> DOLLAR TREE 2031</p>
           <h1>Dollar Tree <em>2031</em></h1>
           <p class="hero-copy">
-            <strong>Smarter shopping. Better value. Easier stores.</strong><br />
-            Meet Bucky — your personal shopping assistant, powered by Solink Vision AI.
+            <strong>Smarter shopping. Better value. Easier stores.</strong
+            ><br />
+            Meet Bucky — your personal shopping assistant, powered by Solink
+            Vision AI.
           </p>
 
           <div class="smart-search">
@@ -183,8 +369,12 @@
               placeholder="Search products, aisles, or ask Bucky..."
               aria-label="Search products, aisles, or ask Bucky"
             />
-            <button (click)="toggleVoice()" [class.listening]="voiceEnabled" aria-label="Toggle voice mode">
-              <mat-icon>{{ voiceEnabled ? 'graphic_eq' : 'mic' }}</mat-icon>
+            <button
+              (click)="toggleVoice()"
+              [class.listening]="voiceEnabled"
+              aria-label="Toggle voice mode"
+            >
+              <mat-icon>{{ voiceEnabled ? "graphic_eq" : "mic" }}</mat-icon>
             </button>
             @if (searchSuggestions.length) {
               <div class="search-suggestions">
@@ -203,26 +393,101 @@
             <span><mat-icon>verified_user</mat-icon> Privacy-first AI</span>
           </div>
           <div class="hero-cta-row">
-            <a href="#shopping">Start shopping <mat-icon>arrow_downward</mat-icon></a>
+            <a href="#shopping"
+              >Start shopping <mat-icon>arrow_downward</mat-icon></a
+            >
             <button (click)="chatOpen = true">Chat with Bucky</button>
           </div>
         </div>
 
         <div class="bucky-preview">
           <div class="preview-status"><span></span> Bucky is online</div>
-          <img src="bucky.png" alt="Bucky, the Dollar Tree 2031 AI shopping assistant, waving" />
-          <button (click)="chatOpen = true">Start chatting <mat-icon>arrow_forward</mat-icon></button>
+          <img
+            src="bucky.png"
+            alt="Bucky, the Dollar Tree 2031 AI shopping assistant, waving"
+          />
+          <button (click)="chatOpen = true">
+            Start chatting <mat-icon>arrow_forward</mat-icon>
+          </button>
         </div>
       </section>
 
       <section class="arrival-alert page-section">
-        <div><mat-icon>notifications_active</mat-icon><span><small>OPT-IN STORE ARRIVAL</small><strong>Let Bucky welcome you when you enter.</strong><p>In this concept, an arrival alert can open your list, current deals, and the fastest shopping route. Location is not continuously tracked.</p></span></div>
+        <div>
+          <mat-icon>notifications_active</mat-icon
+          ><span
+            ><small>OPT-IN STORE ARRIVAL</small
+            ><strong>Let Bucky welcome you when you enter.</strong>
+            <p>
+              In this concept, an arrival alert can open your list, current
+              deals, and the fastest shopping route. Location is not
+              continuously tracked.
+            </p></span
+          >
+        </div>
         <div class="arrival-actions">
-          <button (click)="enableArrivalAlerts()">{{ arrivalAlertsEnabled ? 'Arrival Alerts On' : 'Enable Arrival Alerts' }}</button>
-          <button class="simulate" (click)="simulateStoreArrival()">Simulate Entering Store</button>
-          @if (arrivalAlertMessage) { <small>{{ arrivalAlertMessage }}</small> }
+          <button (click)="enableArrivalAlerts()">
+            {{
+              arrivalAlertsEnabled
+                ? "Arrival Alerts On"
+                : "Enable Arrival Alerts"
+            }}
+          </button>
+          <button class="simulate" (click)="simulateStoreArrival()">
+            Simulate Entering Store
+          </button>
+          @if (arrivalAlertMessage) {
+            <small>{{ arrivalAlertMessage }}</small>
+          }
         </div>
       </section>
+
+      @if (arrivalWelcomeOpen) {
+        <aside class="arrival-welcome" role="dialog" aria-live="polite">
+          <button
+            class="arrival-close"
+            (click)="arrivalWelcomeOpen = false"
+            aria-label="Close welcome"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+          <div class="arrival-welcome-icon">
+            <img src="bucky.png" alt="" /><i></i>
+          </div>
+          <span>BUCKY ARRIVAL ALERT</span>
+          <h2>Welcome to Dollar Tree, Mike!</h2>
+          <p>
+            Welcome to the Store of the Future in Chesapeake. I have your list,
+            today’s best deals, and the fastest shopping route ready.
+          </p>
+          <div class="arrival-welcome-actions">
+            <button
+              (click)="
+                arrivalWelcomeOpen = false;
+                setView('shop');
+                chatOpen = true
+              "
+            >
+              Open Bucky
+            </button>
+            <button
+              (click)="
+                arrivalWelcomeOpen = false;
+                selectCategory('Dollar Zone')
+              "
+            >
+              See Today’s Deals
+            </button>
+            <button (click)="arrivalWelcomeOpen = false; openStoreMap()">
+              Fastest Route
+            </button>
+          </div>
+          <small
+            ><mat-icon>location_off</mat-icon> Demo arrival only. Your location
+            is not continuously tracked.</small
+          >
+        </aside>
+      }
 
       <section class="category-section page-section" id="shopping">
         <div class="category-heading">
@@ -231,16 +496,41 @@
             <h2>Explore every aisle.</h2>
           </div>
           <div class="collection-chips">
-            <button [class.active]="selectedCategory === 'Dollar Zone'" (click)="selectCategory('Dollar Zone')">$1 Finds</button>
-            <button [class.active]="selectedCategory === 'All'" (click)="selectCategory('All')">Everyday Value</button>
-            <button [class.active]="selectedCategory === 'Seasonal'" (click)="selectCategory('Seasonal')">New Arrivals</button>
-            <button [class.active]="selectedCategory === 'Party Supplies'" (click)="selectCategory('Party Supplies')">Trending</button>
+            <button
+              [class.active]="selectedCategory === 'Dollar Zone'"
+              (click)="selectCategory('Dollar Zone')"
+            >
+              $1 Finds
+            </button>
+            <button
+              [class.active]="selectedCategory === 'All'"
+              (click)="selectCategory('All')"
+            >
+              Everyday Value
+            </button>
+            <button
+              [class.active]="selectedCategory === 'Seasonal'"
+              (click)="selectCategory('Seasonal')"
+            >
+              New Arrivals
+            </button>
+            <button
+              [class.active]="selectedCategory === 'Party Supplies'"
+              (click)="selectCategory('Party Supplies')"
+            >
+              Trending
+            </button>
           </div>
         </div>
         <div class="category-grid">
           @for (category of categories; track category.name) {
-            <button class="category-card" (click)="selectCategory(category.name)">
-              <span class="category-image {{ category.tone }}"><i>{{ category.icon }}</i></span>
+            <button
+              class="category-card"
+              (click)="selectCategory(category.name)"
+            >
+              <span class="category-image {{ category.tone }}"
+                ><i>{{ category.icon }}</i></span
+              >
               <strong>{{ category.name }}</strong>
               <small>Shop now <mat-icon>arrow_forward</mat-icon></small>
             </button>
@@ -251,16 +541,54 @@
       <section class="product-catalog page-section">
         <div class="catalog-head">
           <div>
-            <p class="eyebrow green">SHOP {{ selectedStore.city | uppercase }}</p>
-            <h2>{{ selectedCategory === 'Dollar Zone' ? 'The Dollar Zone' : selectedCategory === 'All' ? 'All products' : selectedCategory }}</h2>
-            <p>{{ products.length }} products shown • Simulated availability for Future Store #2031</p>
+            <p class="eyebrow green">
+              SHOP {{ selectedStore.city | uppercase }}
+            </p>
+            <h2>
+              {{
+                selectedCategory === "Dollar Zone"
+                  ? "The Dollar Zone"
+                  : selectedCategory === "All"
+                    ? "All products"
+                    : selectedCategory
+              }}
+            </h2>
+            <p>
+              {{ products.length }} products shown • Simulated availability for
+              Future Store #2031
+            </p>
           </div>
           <div class="catalog-filters">
-            <button [class.active]="selectedCategory === 'All'" (click)="selectCategory('All')">All</button>
-            <button [class.active]="selectedCategory === 'Dollar Zone'" (click)="selectCategory('Dollar Zone')">The Dollar Zone</button>
-            <button [class.active]="selectedCategory === 'Party Supplies'" (click)="selectCategory('Party Supplies')">Party</button>
-            <button [class.active]="selectedCategory === 'Cleaning'" (click)="selectCategory('Cleaning')">Cleaning</button>
-            <button [class.active]="selectedCategory === 'Snacks'" (click)="selectCategory('Snacks')">Snacks</button>
+            <button
+              [class.active]="selectedCategory === 'All'"
+              (click)="selectCategory('All')"
+            >
+              All
+            </button>
+            <button
+              [class.active]="selectedCategory === 'Dollar Zone'"
+              (click)="selectCategory('Dollar Zone')"
+            >
+              The Dollar Zone
+            </button>
+            <button
+              [class.active]="selectedCategory === 'Party Supplies'"
+              (click)="selectCategory('Party Supplies')"
+            >
+              Party
+            </button>
+            <button
+              [class.active]="selectedCategory === 'Cleaning'"
+              (click)="selectCategory('Cleaning')"
+            >
+              Cleaning
+            </button>
+            <button
+              [class.active]="selectedCategory === 'Snacks'"
+              (click)="selectCategory('Snacks')"
+            >
+              Snacks
+            </button>
           </div>
         </div>
         @if (products.length) {
@@ -268,56 +596,131 @@
             @for (product of products; track product.productId) {
               <article class="retail-product">
                 <div class="retail-image">
-                  <span>{{ product.image }}</span>
-                  @if (product.dollarZone) { <b>$1 ZONE</b> }
+                  @if (isProductPhoto(product.image)) {
+                    <img
+                      class="product-photo"
+                      [src]="product.image"
+                      [alt]="product.name"
+                    />
+                  } @else {
+                    <span>{{ product.image }}</span>
+                  }
+                  @if (product.dollarZone) {
+                    <b>$1 ZONE</b>
+                  }
                 </div>
                 <div class="retail-copy">
                   <small>{{ product.category }}</small>
                   <h3>{{ product.name }}</h3>
-                  <div class="rating">{{ product.rating | number:'1.1-1' }} ★ <span>{{ product.productId }}</span></div>
-                  <div class="product-price">{{ product.price | currency }}</div>
-                  <div class="availability {{ inventoryClass(product.inventoryStatus) }}">
-                    <i></i>{{ product.inventoryStatus }} • Aisle {{ product.aisle }}
+                  <div class="rating">
+                    {{ product.rating | number: "1.1-1" }} ★
+                    <span>{{ product.productId }}</span>
                   </div>
-                  <p>{{ product.shelfQuantity }} shelf • {{ product.backroomQuantity }} backroom</p>
+                  <div class="product-price">
+                    {{ product.price | currency }}
+                  </div>
+                  <div
+                    class="availability {{
+                      inventoryClass(product.inventoryStatus)
+                    }}"
+                  >
+                    <i></i>{{ product.inventoryStatus }} • Aisle
+                    {{ product.aisle }}
+                  </div>
+                  <p>
+                    {{ product.shelfQuantity }} shelf •
+                    {{ product.backroomQuantity }} backroom
+                  </p>
                   <div class="product-actions">
-                    <button (click)="addProduct(product)" [disabled]="product.totalInventory === 0">
+                    <button
+                      (click)="addProduct(product)"
+                      [disabled]="product.totalInventory === 0"
+                    >
                       <mat-icon>add_shopping_cart</mat-icon> Add to cart
                     </button>
-                    <button (click)="askAboutProduct(product)"><img src="bucky.png" alt="" /> Ask Bucky</button>
+                    <button (click)="askAboutProduct(product)">
+                      <img src="bucky.png" alt="" /> Ask Bucky
+                    </button>
                   </div>
-                  <button class="map-link" (click)="showOnMap(product)">Show Me on the Store Map</button>
+                  <button class="map-link" (click)="showOnMap(product)">
+                    Show Me on the Store Map
+                  </button>
                 </div>
               </article>
             }
           </div>
         } @else {
-          <div class="empty-state"><mat-icon>search_off</mat-icon><h3>No matching products</h3><p>Try another search or reset the category filter.</p><button (click)="selectCategory('All'); searchText = ''">Show all products</button></div>
+          <div class="empty-state">
+            <mat-icon>search_off</mat-icon>
+            <h3>No matching products</h3>
+            <p>Try another search or reset the category filter.</p>
+            <button (click)="selectCategory('All'); searchText = ''">
+              Show all products
+            </button>
+          </div>
         }
       </section>
 
       <section class="recommendation-hub page-section">
         <div class="recommendation-copy">
-          <span class="section-tag"><mat-icon>auto_awesome</mat-icon> BUCKY RECOMMENDS</span>
-          <h2>{{ customerLoggedIn ? 'Picked for you' : 'Make shopping more personal' }}</h2>
+          <span class="section-tag"
+            ><mat-icon>auto_awesome</mat-icon> BUCKY RECOMMENDS</span
+          >
+          <h2>
+            {{
+              customerLoggedIn
+                ? "Picked for you"
+                : "Make shopping more personal"
+            }}
+          </h2>
           @if (customerLoggedIn) {
-            <p>Based on your saved preference: <strong>{{ customerPreference }}</strong>. Your recommendations use this opt-in profile and simulated store availability.</p>
-            <label>Update my shopping interest
-              <select [ngModel]="customerPreference" (ngModelChange)="updatePreference($event)">
-                <option>Deals & Dollar Zone</option><option>Party Planning</option><option>Home & Organization</option>
-                <option>School & Classroom</option><option>Snacks & Movie Night</option><option>Seasonal Finds</option>
+            <p>
+              Based on your saved preference:
+              <strong>{{ customerPreference }}</strong
+              >. Your recommendations use this opt-in profile and simulated
+              store availability.
+            </p>
+            <label
+              >Update my shopping interest
+              <select
+                [ngModel]="customerPreference"
+                (ngModelChange)="updatePreference($event)"
+              >
+                <option>Deals & Dollar Zone</option>
+                <option>Party Planning</option>
+                <option>Home & Organization</option>
+                <option>School & Classroom</option>
+                <option>Snacks & Movie Night</option>
+                <option>Seasonal Finds</option>
               </select>
             </label>
-            <button class="signout-link" (click)="logoutCustomer()">Sign out of demo account</button>
+            <button class="signout-link" (click)="logoutCustomer()">
+              Sign out of demo account
+            </button>
           } @else {
-            <p>Create an optional demo account to save a preferred store and receive personalized product recommendations.</p>
-            <button class="recommendation-signin" (click)="openCustomerAccount()">Personalize my shopping <mat-icon>arrow_forward</mat-icon></button>
+            <p>
+              Create an optional demo account to save a preferred store and
+              receive personalized product recommendations.
+            </p>
+            <button
+              class="recommendation-signin"
+              (click)="openCustomerAccount()"
+            >
+              Personalize my shopping <mat-icon>arrow_forward</mat-icon>
+            </button>
           }
         </div>
         <div class="recommendation-products">
           @for (product of recommendedProducts; track product.productId) {
             <button (click)="askAboutProduct(product)">
-              <span>{{ product.image }}</span><div><strong>{{ product.name }}</strong><small>{{ product.price | currency }} • {{ product.inventoryStatus }}</small></div>
+              <span>{{ product.image }}</span>
+              <div>
+                <strong>{{ product.name }}</strong
+                ><small
+                  >{{ product.price | currency }} •
+                  {{ product.inventoryStatus }}</small
+                >
+              </div>
             </button>
           }
         </div>
@@ -332,9 +735,22 @@
           <p>Tap any action to start a guided conversation.</p>
         </div>
         <div class="quick-grid">
-          @for (action of quickActions; track action.label; let index = $index) {
-            <button class="quick-card tone-{{ index % 4 }}" (click)="action.label === 'Similar Products' ? startSimilarSearch() : useQuickAction(action.prompt)">
-              <span class="quick-icon"><mat-icon>{{ action.icon }}</mat-icon></span>
+          @for (
+            action of quickActions;
+            track action.label;
+            let index = $index
+          ) {
+            <button
+              class="quick-card tone-{{ index % 4 }}"
+              (click)="
+                action.label === 'Similar Products'
+                  ? startSimilarSearch()
+                  : useQuickAction(action.prompt)
+              "
+            >
+              <span class="quick-icon"
+                ><mat-icon>{{ action.icon }}</mat-icon></span
+              >
               <strong>{{ action.label }}</strong>
               <mat-icon class="arrow">arrow_forward</mat-icon>
             </button>
@@ -346,26 +762,40 @@
         <article class="map-card">
           <div class="card-topline">
             <div>
-              <span class="section-tag"><mat-icon>near_me</mat-icon> SMART STORE MAP</span>
+              <span class="section-tag"
+                ><mat-icon>near_me</mat-icon> SMART STORE MAP</span
+              >
               <h2>Find it fast.</h2>
               <p>
                 @if (currentProduct) {
-                  {{ currentProduct.name }} is in Aisle {{ currentProduct.aisle }}, {{ currentProduct.section }}.
+                  {{ currentProduct.name }} is in Aisle
+                  {{ currentProduct.aisle }}, {{ currentProduct.section }}.
                 } @else {
-                  Search or select a product to highlight its aisle and shelf area.
+                  Search or select a product to highlight its aisle and shelf
+                  area.
                 }
               </p>
             </div>
-            <button (click)="useQuickAction('Find paper towels')">Find another item</button>
+            <button (click)="useQuickAction('Find paper towels')">
+              Find another item
+            </button>
           </div>
           <div class="store-map">
-            <div class="map-label entrance"><mat-icon>login</mat-icon> ENTRANCE</div>
-            <div class="checkout">CHECKOUT <span></span><span></span><span></span></div>
+            <div class="map-label entrance">
+              <mat-icon>login</mat-icon> ENTRANCE
+            </div>
+            <div class="checkout">
+              CHECKOUT <span></span><span></span><span></span>
+            </div>
             <div class="map-special customer-service">CUSTOMER SERVICE</div>
             <div class="map-special restrooms">RESTROOMS</div>
             @for (section of storeSections; track section.aisle) {
-              <div class="aisle {{ section.className }}" [class.active]="highlightedAisle === +section.aisle">
-                <small>AISLE</small><strong>{{ section.aisle }}</strong><span>{{ section.name }}</span>
+              <div
+                class="aisle {{ section.className }}"
+                [class.active]="highlightedAisle === +section.aisle"
+              >
+                <small>AISLE</small><strong>{{ section.aisle }}</strong
+                ><span>{{ section.name }}</span>
                 @if (highlightedAisle === +section.aisle) {
                   <div class="pin"><mat-icon>battery_full</mat-icon></div>
                 }
@@ -377,7 +807,9 @@
         </article>
 
         <article class="inventory-card">
-          <span class="section-tag"><mat-icon>visibility</mat-icon> SOLINK VISION AI</span>
+          <span class="section-tag"
+            ><mat-icon>visibility</mat-icon> SOLINK VISION AI</span
+          >
           <h2>Stock you can see.</h2>
           <p>Live inventory moves from truck to backroom to shelf.</p>
           <div class="product-stock">
@@ -394,10 +826,16 @@
           </div>
           <div class="restock-row">
             <span class="associate-dot"></span>
-            <div><strong>Associate stocking now</strong><span>Estimated: 15 minutes</span></div>
+            <div>
+              <strong>Associate stocking now</strong
+              ><span>Estimated: 15 minutes</span>
+            </div>
             <span class="live-badge">LIVE</span>
           </div>
-          <button class="text-action" (click)="useQuickAction('Is there more in the back?')">
+          <button
+            class="text-action"
+            (click)="useQuickAction('Is there more in the back?')"
+          >
             Ask about inventory <mat-icon>arrow_forward</mat-icon>
           </button>
         </article>
@@ -406,17 +844,28 @@
       <section class="deals-section page-section">
         <div class="deal-title">
           <span class="dollar-coin">$1</span>
-          <div><p class="eyebrow green">SELECTED PRODUCTS FOR EXACTLY $1</p><h2>The Dollar Zone</h2></div>
+          <div>
+            <p class="eyebrow green">SELECTED PRODUCTS FOR EXACTLY $1</p>
+            <h2>The Dollar Zone</h2>
+          </div>
         </div>
-        <p class="deal-copy">A rotating collection of familiar favorites at the original dollar price.</p>
+        <p class="deal-copy">
+          A rotating collection of familiar favorites at the original dollar
+          price.
+        </p>
         <div class="deals-grid">
           @for (product of dollarProducts; track product.productId) {
             <article class="deal-card">
               <span class="deal-art">{{ product.image }}</span>
               <span class="price-bubble">$1</span>
               <strong>{{ product.name }}</strong>
-              <small>{{ product.inventoryStatus }} • Aisle {{ product.aisle }}</small>
-              <button (click)="addProduct(product)">Add to cart <mat-icon>add</mat-icon></button>
+              <small
+                >{{ product.inventoryStatus }} • Aisle
+                {{ product.aisle }}</small
+              >
+              <button (click)="addProduct(product)">
+                Add to cart <mat-icon>add</mat-icon>
+              </button>
             </article>
           }
         </div>
@@ -425,9 +874,14 @@
       <section class="feature-row scan-only page-section">
         <article class="scan-card">
           <div>
-            <span class="section-tag"><mat-icon>qr_code_scanner</mat-icon> SCAN & LEARN</span>
+            <span class="section-tag"
+              ><mat-icon>qr_code_scanner</mat-icon> SCAN & LEARN</span
+            >
             <h2>Know before you buy.</h2>
-            <p>Scan any barcode for price, ingredients, reviews, aisle, stock, and alternatives.</p>
+            <p>
+              Scan any barcode for price, ingredients, reviews, aisle, stock,
+              and alternatives.
+            </p>
           </div>
           @if (!scanned) {
             <button class="scan-button" (click)="scanBarcode()">
@@ -436,7 +890,10 @@
           } @else {
             <div class="scan-result">
               <span>🍿</span>
-              <div><strong>Movie Theater Popcorn</strong><small>$1.25 • Aisle 4 • 28 in stock</small></div>
+              <div>
+                <strong>Movie Theater Popcorn</strong
+                ><small>$1.25 • Aisle 4 • 28 in stock</small>
+              </div>
               <b>4.7 ★</b>
             </div>
           }
@@ -448,30 +905,56 @@
           <div>
             <span>#DollarTree</span>
             <h2>Share Your Finds &amp; Creations!</h2>
-            <p>See what the Chesapeake community is discovering, making, and loving.</p>
+            <p>
+              See what the Chesapeake community is discovering, making, and
+              loving.
+            </p>
           </div>
-          <button (click)="shareFindOpen = true"><mat-icon>add_a_photo</mat-icon> Share your find</button>
+          <button (click)="shareFindOpen = true">
+            <mat-icon>add_a_photo</mat-icon> Share your find
+          </button>
         </div>
         <div class="social-grid">
           @for (find of socialFinds; track find.title; let index = $index) {
-            <article class="social-card {{ find.tone }}" [class.social-tall]="index === 0 || index === 3 || index === 6">
-              <button class="social-image" (click)="shareFindProduct = find.title; shareFindOpen = true" [attr.aria-label]="'Open ' + find.title">
+            <article
+              class="social-card {{ find.tone }}"
+              [class.social-tall]="index === 0 || index === 3 || index === 6"
+            >
+              <button
+                class="social-image"
+                (click)="shareFindProduct = find.title; shareFindOpen = true"
+                [attr.aria-label]="'Open ' + find.title"
+              >
                 <span>{{ find.art }}</span>
                 <i></i>
                 <b>Future Store #2031 find</b>
-                <div class="social-overlay"><mat-icon>favorite</mat-icon><strong>{{ find.likes }}</strong><mat-icon>chat_bubble</mat-icon><strong>{{ 12 + index * 3 }}</strong></div>
+                <div class="social-overlay">
+                  <mat-icon>favorite</mat-icon><strong>{{ find.likes }}</strong
+                  ><mat-icon>chat_bubble</mat-icon
+                  ><strong>{{ 12 + index * 3 }}</strong>
+                </div>
               </button>
               <div class="social-caption">
                 <mat-icon>photo_camera</mat-icon>
-                <div><strong>{{ find.title }}</strong><small>{{ find.user }}</small></div>
-                <button (click)="shareFindProduct = find.title; shareFindOpen = true"><mat-icon>more_horiz</mat-icon></button>
+                <div>
+                  <strong>{{ find.title }}</strong
+                  ><small>{{ find.user }}</small>
+                </div>
+                <button
+                  (click)="shareFindProduct = find.title; shareFindOpen = true"
+                >
+                  <mat-icon>more_horiz</mat-icon>
+                </button>
               </div>
             </article>
           }
         </div>
         <div class="social-footer">
           <mat-icon>favorite</mat-icon>
-          <span>Tag your simulated finds with <strong>#DollarTree</strong> for a chance to appear in this concept gallery.</span>
+          <span
+            >Tag your simulated finds with <strong>#DollarTree</strong> for a
+            chance to appear in this concept gallery.</span
+          >
         </div>
       </section>
 
@@ -479,28 +962,49 @@
         <mat-icon>shield</mat-icon>
         <div>
           <strong>Helpful by design. Private by default.</strong>
-          <p>Solink Vision AI analyzes anonymous traffic patterns and shopping behavior to improve merchandising, inventory placement, and product recommendations while protecting customer privacy.</p>
+          <p>
+            Solink Vision AI analyzes anonymous traffic patterns and shopping
+            behavior to improve merchandising, inventory placement, and product
+            recommendations while protecting customer privacy.
+          </p>
         </div>
         <span>OPT-IN PERSONALIZATION</span>
       </section>
     </main>
-  } @else if (activeView === 'map') {
+  } @else if (activeView === "map") {
     <main class="full-map-page">
       <section class="map-page-hero">
         <div>
           <p class="eyebrow"><span></span> WELCOME TO DOLLAR TREE 2031</p>
           <h1>Shopping made smarter.</h1>
-          <p>Bucky + Solink Vision AI bring the store to life. Search for an item, ask Bucky, or click anywhere on the map to explore.</p>
-          <button (click)="setView('shop')"><mat-icon>arrow_back</mat-icon> Back to shopping</button>
+          <p>
+            Bucky + Solink Vision AI bring the store to life. Search for an
+            item, ask Bucky, or click anywhere on the map to explore.
+          </p>
+          <button (click)="setView('shop')">
+            <mat-icon>arrow_back</mat-icon> Back to shopping
+          </button>
         </div>
-        <div class="map-store-badge"><img src="dollar-tree-logo.svg" alt="Dollar Tree" /><span>NEW STORE CONCEPT • CHESAPEAKE, VA</span></div>
+        <div class="map-store-badge">
+          <img src="dollar-tree-logo.svg" alt="Dollar Tree" /><span
+            >NEW STORE CONCEPT • CHESAPEAKE, VA</span
+          >
+        </div>
       </section>
 
       <section class="mission-strip page-section">
-        <div><span>AI SHOPPING MISSIONS</span><strong>Build my trip</strong></div>
+        <div>
+          <span>AI SHOPPING MISSIONS</span><strong>Build my trip</strong>
+        </div>
         <div class="mission-buttons">
           @for (mission of shoppingMissions; track mission.name) {
-            <button [class.active]="missionName === mission.name" (click)="startMission(mission.name, mission.productIds)"><span>{{ mission.icon }}</span>{{ mission.name }}</button>
+            <button
+              [class.active]="missionName === mission.name"
+              (click)="startMission(mission.name, mission.productIds)"
+            >
+              <span>{{ mission.icon }}</span
+              >{{ mission.name }}
+            </button>
           }
         </div>
       </section>
@@ -508,11 +1012,17 @@
       <section class="map-workspace page-section">
         <div class="map-toolbar">
           <div>
-            <span class="section-tag"><mat-icon>map</mat-icon> INTERACTIVE STORE MAP</span>
-            <h2>{{ currentProduct ? currentProduct.name : 'Explore the store' }}</h2>
+            <span class="section-tag"
+              ><mat-icon>map</mat-icon> INTERACTIVE STORE MAP</span
+            >
+            <h2>
+              {{ currentProduct ? currentProduct.name : "Explore the store" }}
+            </h2>
             <p>
               @if (currentProduct) {
-                Aisle {{ currentProduct.aisle }} • {{ currentProduct.section }} • {{ currentProduct.shelfQuantity }} currently on shelf
+                Aisle {{ currentProduct.aisle }} •
+                {{ currentProduct.section }} •
+                {{ currentProduct.shelfQuantity }} currently on shelf
               } @else {
                 Select any aisle or ask Bucky where to find a product.
               }
@@ -520,7 +1030,11 @@
           </div>
           <form class="map-search-box" (ngSubmit)="findFromMap()">
             <mat-icon>search</mat-icon>
-            <input [(ngModel)]="searchText" name="mapSearch" placeholder="Try “batteries” or “glass vase”" />
+            <input
+              [(ngModel)]="searchText"
+              name="mapSearch"
+              placeholder="Try “batteries” or “glass vase”"
+            />
             <button type="submit">Find on map</button>
           </form>
         </div>
@@ -528,16 +1042,52 @@
         <div class="floor-plan-shell">
           <div class="floor-plan new-store-layout">
             <div class="store-wall top-wall"></div>
-            <button class="department-band health-band" (click)="exploreDepartment('Health & Beauty', 8)">HEALTH & BEAUTY<span>14 products • Click to explore</span></button>
-            <button class="department-band household-band" (click)="exploreDepartment('Home Organization', 9)">HOUSEHOLD<span>12 products • Click to explore</span></button>
-            <button class="department-band cleaning-band" (click)="exploreDepartment('Cleaning', 6)">CLEANING SUPPLIES<span>9 products • Click to explore</span></button>
-            <button class="department-band food-band" (click)="exploreDepartment('Snacks', 4)">FOOD &amp; BEVERAGES<span>18 products • Click to explore</span></button>
+            <button
+              class="department-band health-band"
+              (click)="exploreDepartment('Beauty', 8)"
+            >
+              HEALTH & BEAUTY<span>14 products • Click to explore</span>
+            </button>
+            <button
+              class="department-band household-band"
+              (click)="exploreDepartment('Home Organization', 9)"
+            >
+              HOUSEHOLD<span>12 products • Click to explore</span>
+            </button>
+            <button
+              class="department-band cleaning-band"
+              (click)="exploreDepartment('Cleaning', 6)"
+            >
+              CLEANING SUPPLIES<span>9 products • Click to explore</span>
+            </button>
+            <button
+              class="department-band food-band"
+              (click)="exploreDepartment('Snacks', 4)"
+            >
+              FOOD &amp; BEVERAGES<span>18 products • Click to explore</span>
+            </button>
 
-            <button class="map-zone party-zone" (click)="exploreDepartment('Party Supplies', 3)"><mat-icon>celebration</mat-icon><span>PARTY</span></button>
-            <button class="map-zone balloon-zone" (click)="exploreDepartment('Party Supplies', 3)"><span>🎈</span><b>BALLOON<br />STATION</b></button>
-            <div class="feature-display display-one">FOR ALL SEASONS<br /><b>$1 GREEN DOT</b></div>
-            <div class="feature-display display-two">NEW ITEMS<br /><b>WEEKLY!</b></div>
-            <div class="feature-display display-three">TOYS &amp; MORE<br /><b>FAMILY FINDS</b></div>
+            <button
+              class="map-zone party-zone"
+              (click)="exploreDepartment('Party Supplies', 3)"
+            >
+              <mat-icon>celebration</mat-icon><span>PARTY</span>
+            </button>
+            <button
+              class="map-zone balloon-zone"
+              (click)="exploreDepartment('Party Supplies', 3)"
+            >
+              <span>🎈</span><b>BALLOON<br />STATION</b>
+            </button>
+            <div class="feature-display display-one">
+              FOR ALL SEASONS<br /><b>$1 GREEN DOT</b>
+            </div>
+            <div class="feature-display display-two">
+              NEW ITEMS<br /><b>WEEKLY!</b>
+            </div>
+            <div class="feature-display display-three">
+              TOYS &amp; MORE<br /><b>FAMILY FINDS</b>
+            </div>
 
             <div class="aisle-grid">
               @for (section of storeSections; track section.aisle) {
@@ -551,233 +1101,926 @@
                   <i></i><i></i><i></i><i></i><i></i>
                   <strong>{{ section.name }}</strong>
                   @if (highlightedAisle === +section.aisle) {
-                    <b class="destination-pin"><mat-icon>location_on</mat-icon></b>
+                    <b class="destination-pin"
+                      ><mat-icon>location_on</mat-icon></b
+                    >
                   }
                   @if (missionStopNumber(+section.aisle) > 0) {
-                    <em class="stop-number">{{ missionStopNumber(+section.aisle) }}</em>
+                    <em class="stop-number">{{
+                      missionStopNumber(+section.aisle)
+                    }}</em>
                   }
-                  <div class="aisle-tooltip"><b>{{ section.name | uppercase }}</b><span>Top sellers available</span><small>Click to explore →</small></div>
+                  <div class="aisle-tooltip">
+                    <b>{{ section.name | uppercase }}</b
+                    ><span>Top sellers available</span
+                    ><small>Click to explore →</small>
+                  </div>
                 </button>
               }
             </div>
 
             <div class="front-value-shelves">
-              <button (click)="exploreDepartment('Drinks', 5)"><strong>DRINKS</strong><span>💧 🥤 🧃</span></button>
-              <button (click)="exploreDepartment('Snacks', 4)"><strong>SNACKS</strong><span>🍿 🍪 🥨</span></button>
-              <button class="dollar-shelf" (click)="exploreDepartment('The Dollar Zone', 1)"><strong>$1 ONLY!</strong><span>🧽 📓 🏺</span></button>
+              <button (click)="exploreDepartment('Drinks', 5)">
+                <strong>DRINKS</strong><span>💧 🥤 🧃</span>
+              </button>
+              <button (click)="exploreDepartment('Snacks', 4)">
+                <strong>SNACKS</strong><span>🍿 🍪 🥨</span>
+              </button>
+              <button
+                class="dollar-shelf"
+                (click)="exploreDepartment('The Dollar Zone', 1)"
+              >
+                <strong>$1 ONLY!</strong><span>🧽 📓 🏺</span>
+              </button>
             </div>
-            <div class="walking-path"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="map-entrance"><span class="you-dot"></span><strong>YOU ARE HERE</strong><small>Main entrance</small></div>
-            <div class="queue-start">LINE STARTS HERE <mat-icon>south</mat-icon></div>
-            <div class="checkout-bank"><strong>CHECKOUT</strong>@for (lane of [1,2,3,4,5,6]; track lane) { <span>{{ lane }}</span> }</div>
+            <div class="walking-path">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="map-entrance">
+              <span class="you-dot"></span><strong>YOU ARE HERE</strong
+              ><small>Main entrance</small>
+            </div>
+            <div class="queue-start">
+              LINE STARTS HERE <mat-icon>south</mat-icon>
+            </div>
+            <div class="checkout-bank">
+              <strong>CHECKOUT</strong>
+              @for (lane of [1, 2, 3, 4, 5, 6]; track lane) {
+                <span>{{ lane }}</span>
+              }
+            </div>
             <div class="service-zone">CUSTOMER SERVICE</div>
             <div class="restroom-zone"><mat-icon>wc</mat-icon> RESTROOMS</div>
 
             <div class="future-layout-2031">
               <div class="future-back-wall">
-                <button (click)="exploreDepartment('Health & Beauty', 8)" [class.highlighted]="highlightedAisle === 8">BEAUTY</button>
-                <button (click)="exploreDepartment('Cleaning', 6)" [class.highlighted]="highlightedAisle === 6">HOUSEHOLD<br />CLEANING</button>
-                <button (click)="exploreDepartment('Health & Beauty', 8)" [class.highlighted]="highlightedAisle === 8">HEALTH &amp;<br />BEAUTY</button>
-                <button (click)="exploreDepartment('Home Organization', 9)" [class.highlighted]="highlightedAisle === 9">PET SUPPLIES</button>
-                <button (click)="exploreDepartment('Seasonal', 12)" [class.highlighted]="highlightedAisle === 12">CANDLES &amp;<br />HOME FRAGRANCE</button>
-                <button (click)="exploreAisle(8)" [class.highlighted]="highlightedAisle === 8">BATTERIES</button>
-                <button (click)="exploreDepartment('Snacks', 4)" [class.highlighted]="highlightedAisle === 4">FOOD</button>
-                <button (click)="exploreAisle(11)" [class.highlighted]="highlightedAisle === 11">REFRIGERATED<br />FOOD</button>
+                <button
+                  (click)="exploreDepartment('Health', 8)"
+                  [class.highlighted]="
+                    highlightedAisle === 8 &&
+                    currentProduct?.category === 'Beauty'
+                  "
+                >
+                  BEAUTY
+                </button>
+                <button
+                  (click)="exploreDepartment('Cleaning', 6)"
+                  [class.highlighted]="highlightedAisle === 6"
+                >
+                  HOUSEHOLD<br />CLEANING
+                </button>
+                <button
+                  (click)="exploreDepartment('Beauty', 8)"
+                  [class.highlighted]="
+                    highlightedAisle === 8 &&
+                    currentProduct?.category === 'Health'
+                  "
+                >
+                  HEALTH
+                  @if (currentProduct?.category === "Health") {
+                    <span class="map-product-pin"
+                      ><mat-icon>location_on</mat-icon
+                      >{{ currentProduct?.name }}</span
+                    >
+                  }
+                </button>
+                <button
+                  (click)="exploreDepartment('Home Organization', 9)"
+                  [class.highlighted]="highlightedAisle === 9"
+                >
+                  PET SUPPLIES
+                </button>
+                <button
+                  (click)="exploreDepartment('Seasonal', 12)"
+                  [class.highlighted]="highlightedAisle === 12"
+                >
+                  CANDLES &amp;<br />HOME FRAGRANCE
+                </button>
+                <button
+                  (click)="exploreDepartment('Batteries', 8)"
+                  [class.highlighted]="
+                    highlightedAisle === 8 &&
+                    currentProduct?.category === 'Batteries'
+                  "
+                >
+                  BATTERIES
+                  @if (currentProduct?.category === "Batteries") {
+                    <span class="map-product-pin"
+                      ><mat-icon>location_on</mat-icon
+                      >{{ currentProduct?.name }}</span
+                    >
+                  }
+                </button>
+                <button
+                  (click)="exploreDepartment('Snacks', 4)"
+                  [class.highlighted]="highlightedAisle === 4"
+                >
+                  FOOD
+                </button>
+                <button
+                  (click)="exploreAisle(11)"
+                  [class.highlighted]="highlightedAisle === 11"
+                >
+                  REFRIGERATED<br />FOOD
+                </button>
               </div>
 
-              <button class="future-left-wall" (click)="exploreDepartment('Party Supplies', 3)" [class.highlighted]="highlightedAisle === 3">PARTY SUPPLIES</button>
-              <button class="future-party" (click)="exploreDepartment('Party Supplies', 3)" [class.highlighted]="highlightedAisle === 3"><strong>PARTY</strong><span>Tableware · decorations</span></button>
-              <button class="future-balloon" (click)="exploreDepartment('Party Supplies', 3)" [class.highlighted]="highlightedAisle === 3"><span>🎈</span><strong>BALLOON<br />STATION</strong></button>
-              <button class="future-frozen" (click)="exploreAisle(11)" [class.highlighted]="highlightedAisle === 11">FROZEN</button>
+              <button
+                class="future-left-wall"
+                (click)="exploreDepartment('Party Supplies', 3)"
+                [class.highlighted]="highlightedAisle === 3"
+              >
+                PARTY SUPPLIES
+              </button>
+              <button
+                class="future-party"
+                (click)="exploreDepartment('Party Supplies', 3)"
+                [class.highlighted]="highlightedAisle === 3"
+              >
+                <strong>PARTY</strong><span>Tableware · decorations</span>
+              </button>
+              <button
+                class="future-balloon"
+                (click)="exploreDepartment('Party Supplies', 3)"
+                [class.highlighted]="highlightedAisle === 3"
+              >
+                <span>🎈</span><strong>BALLOON<br />STATION</strong>
+              </button>
+              <button
+                class="future-frozen"
+                (click)="exploreAisle(11)"
+                [class.highlighted]="highlightedAisle === 11"
+              >
+                FROZEN
+              </button>
               <div class="future-employees">EMPLOYEES<br />ONLY</div>
 
               <div class="future-dollar-run">
-                <button (click)="exploreDepartment('The Dollar Zone', 1)" [class.highlighted]="highlightedAisle === 1"><b>$1 ONLY · DOLLAR ZONE</b><span>Cards · cups · notebooks · select candy</span><i></i><i></i><i></i></button>
+                <button
+                  (click)="exploreDepartment('The Dollar Zone', 1)"
+                  [class.highlighted]="highlightedAisle === 1"
+                >
+                  <b>$1 ONLY · DOLLAR ZONE</b
+                  ><span>Cards · cups · notebooks · select candy</span><i></i
+                  ><i></i><i></i>
+                </button>
               </div>
 
               <div class="future-main-aisles">
-                <button (click)="exploreDepartment('Seasonal', 12)" [class.highlighted]="highlightedAisle === 12"><b>SEASONAL</b><span>🍂 🎃 🌻</span></button>
-                <button (click)="exploreDepartment('Home Organization', 9)" [class.highlighted]="highlightedAisle === 9"><b>HOME DECOR</b><span>🕯️ 🪴 🖼️</span></button>
-                <button (click)="exploreAisle(10)" [class.highlighted]="highlightedAisle === 10"><b>TOYS</b><span>🚗 🧸 🧩</span></button>
-                <button (click)="exploreDepartment('School Supplies', 2)" [class.highlighted]="highlightedAisle === 2"><b>STATIONERY</b><span>✏️ 📓 🖍️</span></button>
-                <button (click)="exploreDepartment('Health & Beauty', 8)" [class.highlighted]="highlightedAisle === 8"><b>BEAUTY &amp; COSMETICS</b><span>💄 🧴 🪞</span></button>
-                <button (click)="exploreDepartment('Snacks', 4)" [class.highlighted]="highlightedAisle === 4"><b>SNACKS</b><span>🍿 🍪 🥨</span></button>
+                <button
+                  (click)="exploreDepartment('Seasonal', 12)"
+                  [class.highlighted]="highlightedAisle === 12"
+                >
+                  <b>SEASONAL</b><span>🍂 🎃 🌻</span>
+                </button>
+                <button
+                  (click)="exploreDepartment('Home Organization', 9)"
+                  [class.highlighted]="highlightedAisle === 9"
+                >
+                  @if (currentProduct?.category === "Home Organization") {
+                    <span class="map-product-pin"
+                      ><mat-icon>location_on</mat-icon
+                      >{{ currentProduct?.name }}</span
+                    >
+                  }
+                  <b>HOME DECOR</b><span>🕯️ 🪴 🖼️</span>
+                </button>
+                <button
+                  (click)="exploreAisle(10)"
+                  [class.highlighted]="highlightedAisle === 10"
+                >
+                  @if (currentProduct?.category === "Toys") {
+                    <span class="map-product-pin"
+                      ><mat-icon>location_on</mat-icon
+                      >{{ currentProduct?.name }}</span
+                    >
+                  }
+                  <b>TOYS</b><span>🚗 🧸 🧩</span>
+                </button>
+                <button
+                  (click)="exploreDepartment('School Supplies', 2)"
+                  [class.highlighted]="highlightedAisle === 2"
+                >
+                  <b>STATIONERY</b><span>✏️ 📓 🖍️</span>
+                </button>
+                <button
+                  (click)="exploreDepartment('Beauty', 8)"
+                  [class.highlighted]="
+                    highlightedAisle === 8 &&
+                    currentProduct?.category === 'Beauty'
+                  "
+                >
+                  @if (currentProduct?.category === "Beauty") {
+                    <span class="map-product-pin"
+                      ><mat-icon>location_on</mat-icon
+                      >{{ currentProduct?.name }}</span
+                    >
+                  }
+                  <b>BEAUTY &amp; COSMETICS</b><span>💄 🧴 🪞</span>
+                </button>
+                <button
+                  (click)="exploreDepartment('Snacks', 4)"
+                  [class.highlighted]="highlightedAisle === 4"
+                >
+                  @if (currentProduct?.category === "Snacks") {
+                    <span class="map-product-pin"
+                      ><mat-icon>location_on</mat-icon
+                      >{{ currentProduct?.name }}</span
+                    >
+                  }
+                  <b>SNACKS</b><span>🍿 🍪 🥨</span>
+                </button>
               </div>
 
               <div class="future-wow-row">
-                <button (click)="selectCategory('All'); setView('shop')"><b>WOW FIND</b><span>New discoveries</span></button>
-                <button (click)="selectCategory('All'); setView('shop')"><b>SPECIAL VALUE</b><span>More choices</span></button>
-                <button (click)="selectCategory('All'); setView('shop')"><b>WOW FIND</b><span>Trending now</span></button>
+                <button (click)="selectCategory('All'); setView('shop')">
+                  <b>WOW FIND</b><span>New discoveries</span>
+                </button>
+                <button (click)="selectCategory('All'); setView('shop')">
+                  <b>SPECIAL VALUE</b><span>More choices</span>
+                </button>
+                <button (click)="selectCategory('All'); setView('shop')">
+                  <b>WOW FIND</b><span>Trending now</span>
+                </button>
               </div>
               <div class="future-season-row">
-                <button (click)="exploreDepartment('Seasonal', 12)"><b>FALL HARVEST</b><span>Seasonal display</span></button>
-                <button (click)="exploreDepartment('Home Organization', 9)"><b>LOCAL CRAFT CORNER</b><span>Crafts &amp; creations</span></button>
+                <button (click)="exploreDepartment('Seasonal', 12)">
+                  <b>FALL HARVEST</b><span>Seasonal display</span>
+                </button>
+                <button (click)="exploreDepartment('Home Organization', 9)">
+                  <b>LOCAL CRAFT CORNER</b><span>Crafts &amp; creations</span>
+                </button>
               </div>
 
-              <div class="future-queue"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              <div class="future-checkouts">
-                @for (lane of [1,2,3,4]; track lane) { <button><b>{{ lane }}</b><span>CHECKOUT</span></button> }
+              <div class="future-queue">
+                <i></i><i></i><i></i><i></i><i></i><i></i>
               </div>
-              <div class="future-entry"><span class="you-dot"></span><strong>YOU ARE HERE</strong><small>Main entrance</small></div>
-              @if (currentProduct) { <div class="future-route-pin" [style.--route-x]="currentProduct.aisle"><mat-icon>location_on</mat-icon><span>{{ currentProduct.name }}</span></div> }
+              <div class="future-checkouts">
+                @for (lane of [1, 2, 3, 4]; track lane) {
+                  <button>
+                    <b>{{ lane }}</b
+                    ><span>CHECKOUT</span>
+                  </button>
+                }
+              </div>
+              <div class="future-entry">
+                <span class="you-dot"></span><strong>YOU ARE HERE</strong
+                ><small>Main entrance</small>
+              </div>
             </div>
           </div>
 
           <aside class="map-directions">
-            <div class="direction-title"><span><mat-icon>near_me</mat-icon></span><div><small>BUCKY DIRECTIONS</small><h3>{{ currentProduct ? currentProduct.name : 'Choose a destination' }}</h3></div></div>
+            <div class="direction-title">
+              <span><mat-icon>near_me</mat-icon></span>
+              <div>
+                <small>BUCKY DIRECTIONS</small>
+                <h3>
+                  {{
+                    currentProduct
+                      ? currentProduct.name
+                      : "Choose a destination"
+                  }}
+                </h3>
+              </div>
+            </div>
             @if (mapPanelProducts.length) {
               <div class="map-product-drawer">
-                <div><strong>{{ selectedMapDepartment || ('Aisle ' + highlightedAisle) }}</strong><span>Available today</span></div>
+                <div>
+                  <strong>{{
+                    selectedMapDepartment || "Aisle " + highlightedAisle
+                  }}</strong
+                  ><span>Available today</span>
+                </div>
                 @for (product of mapPanelProducts; track product.productId) {
                   <article>
                     <span>{{ product.image }}</span>
-                    <div><strong>{{ product.name }}</strong><small>{{ product.price | currency }} • {{ product.inventoryStatus }} • {{ product.shelfQuantity }} shelf</small></div>
-                    <button (click)="addProduct(product)" title="Add to cart"><mat-icon>add_shopping_cart</mat-icon></button>
-                    <button (click)="takeMeThere(product)">Take Me There</button>
+                    <div>
+                      <strong>{{ product.name }}</strong
+                      ><small
+                        >{{ product.price | currency }} •
+                        {{ product.inventoryStatus }} •
+                        {{ product.shelfQuantity }} shelf</small
+                      >
+                    </div>
+                    <button (click)="addProduct(product)" title="Add to cart">
+                      <mat-icon>add_shopping_cart</mat-icon>
+                    </button>
+                    <button (click)="takeMeThere(product)">
+                      Take Me There
+                    </button>
                   </article>
                 }
               </div>
             }
             @if (currentProduct) {
               <div class="route-summary">
-                <div><small>Destination</small><strong>Aisle {{ currentProduct.aisle }}</strong></div>
-                <div><small>Shelf</small><strong>{{ currentProduct.section }}</strong></div>
-                <div><small>Estimated walk</small><strong>{{ 24 + currentProduct.aisle * 2 }} seconds</strong></div>
+                <div>
+                  <small>Destination</small
+                  ><strong>Aisle {{ currentProduct.aisle }}</strong>
+                </div>
+                <div>
+                  <small>Shelf</small
+                  ><strong>{{ currentProduct.section }}</strong>
+                </div>
+                <div>
+                  <small>Estimated walk</small
+                  ><strong>{{ 24 + currentProduct.aisle * 2 }} seconds</strong>
+                </div>
               </div>
               <div class="selected-product-detail">
-                <div class="selected-product-head"><span>{{ currentProduct.image }}</span><div><small>{{ currentProduct.productId }} · {{ currentProduct.category }}</small><strong>{{ currentProduct.name }}</strong><b>{{ currentProduct.price | currency }}</b></div></div>
-                <div class="selected-product-facts">
-                  <span><small>On Hand</small><b>{{ currentProduct.totalInventory }}</b></span>
-                  <span><small>On Shelf</small><b>{{ currentProduct.shelfQuantity }}</b></span>
-                  <span><small>Backroom</small><b>{{ currentProduct.backroomQuantity }}</b></span>
-                  <span><small>Status</small><b>{{ currentProduct.inventoryStatus }}</b></span>
+                <div class="selected-product-head">
+                  @if (isProductPhoto(currentProduct.image)) {
+                    <img
+                      class="product-photo"
+                      [src]="currentProduct.image"
+                      [alt]="currentProduct.name"
+                    />
+                  } @else {
+                    <span>{{ currentProduct.image }}</span>
+                  }
+                  <div>
+                    <small
+                      >{{ currentProduct.productId }} ·
+                      {{ currentProduct.category }}</small
+                    ><strong>{{ currentProduct.name }}</strong
+                    ><b>{{ currentProduct.price | currency }}</b>
+                  </div>
                 </div>
-                <p><mat-icon>history</mat-icon><span><b>Last restocked</b>{{ currentProduct.lastRestocked }}</span></p>
-                <p><mat-icon>event</mat-icon><span><b>Next restock</b>{{ currentProduct.expectedRestock }}</span></p>
-                <div class="selected-product-actions"><button (click)="addProduct(currentProduct)"><mat-icon>add_shopping_cart</mat-icon> Add to cart</button><button (click)="askAboutProduct(currentProduct)"><img src="bucky.png" alt="" /> Ask Bucky</button></div>
+                <div class="selected-product-facts">
+                  <span
+                    ><small>On Hand</small
+                    ><b>{{ currentProduct.totalInventory }}</b></span
+                  >
+                  <span
+                    ><small>On Shelf</small
+                    ><b>{{ currentProduct.shelfQuantity }}</b></span
+                  >
+                  <span
+                    ><small>Backroom</small
+                    ><b>{{ currentProduct.backroomQuantity }}</b></span
+                  >
+                  <span
+                    ><small>Status</small
+                    ><b>{{ currentProduct.inventoryStatus }}</b></span
+                  >
+                </div>
+                <p>
+                  <mat-icon>history</mat-icon
+                  ><span
+                    ><b>Last restocked</b
+                    >{{ currentProduct.lastRestocked }}</span
+                  >
+                </p>
+                <p>
+                  <mat-icon>event</mat-icon
+                  ><span
+                    ><b>Next restock</b
+                    >{{ currentProduct.expectedRestock }}</span
+                  >
+                </p>
+                <div class="selected-product-actions">
+                  <button (click)="addProduct(currentProduct)">
+                    <mat-icon>add_shopping_cart</mat-icon> Add to cart</button
+                  ><button (click)="askAboutProduct(currentProduct)">
+                    <img src="bucky.png" alt="" /> Ask Bucky
+                  </button>
+                </div>
               </div>
               <ol>
                 <li><span>1</span>Enter through the main doors.</li>
                 <li><span>2</span>Follow the green center walkway.</li>
-                <li><span>3</span>Turn at the Aisle {{ currentProduct.aisle }} sign.</li>
+                <li>
+                  <span>3</span>Turn at the Aisle
+                  {{ currentProduct.aisle }} sign.
+                </li>
                 <li><span>4</span>Look for {{ currentProduct.section }}.</li>
               </ol>
-              <button (click)="askAboutProduct(currentProduct)"><img src="bucky.png" alt="" /> Ask Bucky about stock</button>
+              <button (click)="askAboutProduct(currentProduct)">
+                <img src="bucky.png" alt="" /> Ask Bucky about stock
+              </button>
             } @else {
-              <div class="map-empty"><mat-icon>travel_explore</mat-icon><p>Search for an item or select an aisle to begin.</p><button (click)="chatOpen = true">Ask Bucky to find it</button></div>
+              <div class="map-empty">
+                <mat-icon>travel_explore</mat-icon>
+                <p>Search for an item or select an aisle to begin.</p>
+                <button (click)="chatOpen = true">Ask Bucky to find it</button>
+              </div>
             }
-            <div class="map-legend"><span><i class="route"></i> Walking route</span><span><i class="destination"></i> Destination</span><span><i class="display"></i> Feature display</span></div>
+            <div class="map-legend">
+              <span><i class="route"></i> Walking route</span
+              ><span><i class="destination"></i> Destination</span
+              ><span><i class="display"></i> Feature display</span>
+            </div>
           </aside>
         </div>
 
         @if (missionName) {
           <section class="optimized-route-panel">
-            <div class="route-panel-title"><div><span>OPTIMIZED MISSION</span><h3>{{ missionName }}</h3></div><button (click)="clearMission()"><mat-icon>close</mat-icon></button></div>
+            <div class="route-panel-title">
+              <div>
+                <span>OPTIMIZED MISSION</span>
+                <h3>{{ missionName }}</h3>
+              </div>
+              <button (click)="clearMission()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
             <div class="route-stops">
               <span class="route-origin"><i></i>YOU</span>
-              @for (product of missionProducts; track product.productId; let index = $index) {
-                <button (click)="takeMeThere(product)"><b>{{ index + 1 }}</b><span>{{ product.name }}<small>Aisle {{ product.aisle }}</small></span></button><mat-icon>arrow_forward</mat-icon>
+              @for (
+                product of missionProducts;
+                track product.productId;
+                let index = $index
+              ) {
+                <button (click)="takeMeThere(product)">
+                  <b>{{ index + 1 }}</b
+                  ><span
+                    >{{ product.name
+                    }}<small>Aisle {{ product.aisle }}</small></span
+                  ></button
+                ><mat-icon>arrow_forward</mat-icon>
               }
-              <span class="route-checkout"><mat-icon>shopping_cart_checkout</mat-icon>CHECKOUT</span>
+              <span class="route-checkout"
+                ><mat-icon>shopping_cart_checkout</mat-icon>CHECKOUT</span
+              >
             </div>
-            <div class="route-totals"><span><mat-icon>route</mat-icon><b>{{ missionProducts.length * 52 + 75 }} feet</b> total walk</span><span><mat-icon>schedule</mat-icon><b>{{ missionProducts.length + 1 }} minutes</b> estimated trip</span><span><mat-icon>shopping_basket</mat-icon><b>{{ missionProducts.length }} items</b> in mission</span></div>
+            <div class="route-totals">
+              <span
+                ><mat-icon>route</mat-icon
+                ><b>{{ missionProducts.length * 52 + 75 }} feet</b> total
+                walk</span
+              ><span
+                ><mat-icon>schedule</mat-icon
+                ><b>{{ missionProducts.length + 1 }} minutes</b> estimated
+                trip</span
+              ><span
+                ><mat-icon>shopping_basket</mat-icon
+                ><b>{{ missionProducts.length }} items</b> in mission</span
+              >
+            </div>
           </section>
         } @else if (optimizedCartRoute.length) {
           <section class="optimized-route-panel compact">
-            <div class="route-panel-title"><div><span>FIND MY SHOPPING ROUTE</span><h3>Your cart, optimized</h3></div><strong>{{ optimizedCartRoute.length }} stops</strong></div>
+            <div class="route-panel-title">
+              <div>
+                <span>FIND MY SHOPPING ROUTE</span>
+                <h3>Your cart, optimized</h3>
+              </div>
+              <strong>{{ optimizedCartRoute.length }} stops</strong>
+            </div>
             <div class="route-stops">
               <span class="route-origin"><i></i>YOU</span>
-              @for (product of optimizedCartRoute; track product.productId; let index = $index) {
-                <button (click)="takeMeThere(product)"><b>{{ index + 1 }}</b><span>{{ product.name }}<small>Aisle {{ product.aisle }}</small></span></button><mat-icon>arrow_forward</mat-icon>
+              @for (
+                product of optimizedCartRoute;
+                track product.productId;
+                let index = $index
+              ) {
+                <button (click)="takeMeThere(product)">
+                  <b>{{ index + 1 }}</b
+                  ><span
+                    >{{ product.name
+                    }}<small>Aisle {{ product.aisle }}</small></span
+                  ></button
+                ><mat-icon>arrow_forward</mat-icon>
               }
-              <span class="route-checkout"><mat-icon>shopping_cart_checkout</mat-icon>CHECKOUT</span>
+              <span class="route-checkout"
+                ><mat-icon>shopping_cart_checkout</mat-icon>CHECKOUT</span
+              >
             </div>
           </section>
         }
 
         <div class="map-highlights">
-          <article><mat-icon>wb_sunny</mat-icon><div><strong>Open & inviting</strong><span>Wide aisles and clear sightlines.</span></div></article>
-          <article><mat-icon>lightbulb</mat-icon><div><strong>Bright & welcoming</strong><span>Color-balanced LED lighting.</span></div></article>
-          <article><mat-icon>shopping_cart</mat-icon><div><strong>Easy to shop</strong><span>Logical departments and wayfinding.</span></div></article>
-          <article><mat-icon>sell</mat-icon><div><strong>Great value focused</strong><span>Bold signage and $1 green-dot finds.</span></div></article>
+          <article>
+            <mat-icon>wb_sunny</mat-icon>
+            <div>
+              <strong>Open & inviting</strong
+              ><span>Wide aisles and clear sightlines.</span>
+            </div>
+          </article>
+          <article>
+            <mat-icon>lightbulb</mat-icon>
+            <div>
+              <strong>Bright & welcoming</strong
+              ><span>Color-balanced LED lighting.</span>
+            </div>
+          </article>
+          <article>
+            <mat-icon>shopping_cart</mat-icon>
+            <div>
+              <strong>Easy to shop</strong
+              ><span>Logical departments and wayfinding.</span>
+            </div>
+          </article>
+          <article>
+            <mat-icon>sell</mat-icon>
+            <div>
+              <strong>Great value focused</strong
+              ><span>Bold signage and $1 green-dot finds.</span>
+            </div>
+          </article>
         </div>
       </section>
     </main>
-  } @else if (activeView === 'employee') {
+  } @else if (activeView === "employee") {
     @if (!employeeLoggedIn) {
       <main class="employee-login">
         <section>
-          <div class="login-mascot"><img src="bucky.png" alt="Bucky Team Assist" /></div>
+          <div class="login-mascot">
+            <img src="bucky.png" alt="Bucky Team Assist" />
+          </div>
           <div class="login-form">
             <span class="demo-label">FICTIONAL DEMONSTRATION LOGIN</span>
-            <h1>Associate Portal</h1>
-            <p>Your employee ID automatically loads your schedule, tasks, store tools, and Associate Hub.</p>
-            @if (false) { <label>Portal role
-              <select [(ngModel)]="employeeRole">
-                <option value="associate">Associate</option>
-                <option value="sm">SM — Store Manager</option>
-                <option value="dm">DM — District Manager</option>
-                <option value="ap">AP — Asset Protection</option>
-              </select>
-            </label> }
-            <label>Employee ID<input [(ngModel)]="employeeId" inputmode="numeric" placeholder="2031" /></label>
-            <label>PIN<input [(ngModel)]="employeePin" type="password" inputmode="numeric" placeholder="1234" /></label>
-            @if (loginError) { <div class="login-error">{{ loginError }}</div> }
-            <button (click)="loginEmployee()">Enter Demo Portal <mat-icon>arrow_forward</mat-icon></button>
-            <small>Demo credentials: Employee ID <b>2031</b> • PIN <b>1234</b></small>
+            <h1>Dollar Tree 2031 Command Center</h1>
+            <p>
+              Ask one question. Get one answer. Take the next step.
+            </p>
+            @if (true) {
+              <label
+                >Portal role
+                <select [(ngModel)]="employeeRole">
+                  <option value="associate">Store Associate</option>
+                  <option value="asm">Assistant Store Manager</option>
+                  <option value="sm">SM — Store Manager</option>
+                  <option value="dm">DM — District Manager</option>
+                  <option value="ap">AP — Asset Protection</option>
+                </select>
+              </label>
+            }
+            <label
+              >Employee ID<input
+                [(ngModel)]="employeeId"
+                inputmode="numeric"
+                placeholder="2031"
+            /></label>
+            <label
+              >PIN<input
+                [(ngModel)]="employeePin"
+                type="password"
+                inputmode="numeric"
+                placeholder="1234"
+            /></label>
+            @if (loginError) {
+              <div class="login-error">{{ loginError }}</div>
+            }
+            <button (click)="loginEmployee()">
+              Enter Demo Portal <mat-icon>arrow_forward</mat-icon>
+            </button>
+            <small
+              >Demo credentials: Employee ID <b>2031</b> • PIN
+              <b>1234</b></small
+            >
           </div>
         </section>
       </main>
     } @else {
-      <main class="employee-portal">
+      <main
+        class="employee-portal"
+        [class.associate-command]="employeeRole === 'associate'"
+      >
         <section class="employee-welcome page-section">
           <div>
-            <p class="eyebrow green">{{ employeeRole === 'dm' ? 'CHESAPEAKE AREA' : 'FUTURE STORE #2031' }} • {{ employeeRoleLabel | uppercase }}</p>
-            <h1>Good morning, {{ employeeRole === 'associate' ? 'Verlaine' : employeeRole === 'sm' ? 'Morgan' : employeeRole === 'dm' ? 'Taylor' : 'Alex' }}.</h1>
-            <p>{{ employeeRoleLabel }} • {{ employeeRole === 'associate' ? 'Stocking and Customer Support • 9:00 AM–5:00 PM' : employeeRole === 'sm' ? 'Store Operations • 7:00 AM–5:00 PM' : employeeRole === 'dm' ? 'District Operations • 8:00 AM–6:00 PM' : 'Store Safety and Asset Protection • 9:00 AM–5:00 PM' }}</p>
+            <p class="eyebrow green">
+              {{
+                employeeRole === "dm" ? "CHESAPEAKE AREA" : "FUTURE STORE #2031"
+              }}
+              • {{ employeeRoleLabel | uppercase }}
+            </p>
+            <h1>
+              Good morning,
+              {{
+                employeeRole === "associate"
+                  ? "Verlaine"
+                  : employeeRole === "asm" || employeeRole === "sm"
+                    ? "Morgan"
+                    : employeeRole === "dm"
+                      ? "Taylor"
+                      : "Alex"
+              }}.
+            </h1>
+            <p>
+              {{ employeeRoleLabel }} •
+              {{
+                employeeRole === "associate"
+                  ? "Stocking and Customer Support • 9:00 AM–5:00 PM"
+                  : employeeRole === "sm"
+                    ? "Store Operations • 7:00 AM–5:00 PM"
+                    : employeeRole === "dm"
+                      ? "District Operations • 8:00 AM–6:00 PM"
+                      : "Store Safety and Asset Protection • 9:00 AM–5:00 PM"
+              }}
+            </p>
           </div>
           <div class="employee-actions">
             <span><i></i> Session active</span>
-            @if (employeeRole !== 'associate') { <button (click)="setView('manager')">Open {{ employeeRole === 'dm' ? 'District' : employeeRole === 'ap' ? 'Security' : 'Manager' }} Dashboard</button> }
+            @if (employeeRole !== "associate") {
+              <button (click)="setView('manager')">
+                Open
+                {{
+                  employeeRole === "dm"
+                    ? "District"
+                    : "Manager"
+                }}
+                Dashboard
+              </button>
+            }
             <button (click)="logoutEmployee()">Sign out</button>
           </div>
         </section>
 
-        @if (employeeRole === 'associate') {
+        @if (employeeRole === "associate") {
+          <section class="associate-command-center page-section">
+            <div class="command-brand">
+              <div>
+                <span>POWERED BY BUCKY + SOLINK AI VIDEO INTELLIGENCE</span>
+                <h2>What should I do next?</h2>
+                <p>See More. Know More. Do More.</p>
+              </div>
+              <button (click)="setAssociateRole('sm')">Switch demo role</button>
+            </div>
+
+            <form class="command-search" (ngSubmit)="submitTeamPrompt()">
+              <img src="bucky.png" alt="" />
+              <input
+                [(ngModel)]="teamPrompt"
+                name="commandSearch"
+                placeholder="Ask Bucky anything about your shift."
+              />
+              <button type="button" aria-label="Voice input">
+                <mat-icon>mic</mat-icon>
+              </button>
+              <button type="submit">Ask Bucky</button>
+            </form>
+
+            <div class="command-quick-prompts">
+              <button (click)="sendTeamPrompt('What should I do next?')">
+                What should I do next?
+              </button>
+              <button (click)="sendTeamPrompt('When will the truck arrive?')">
+                Truck late?
+              </button>
+              <button (click)="sendTeamPrompt('Where are the batteries?')">
+                Where are batteries?
+              </button>
+              <button
+                (click)="sendTeamPrompt('A customer needs birthday balloons.')"
+              >
+                Help a customer
+              </button>
+            </div>
+
+            @if (teamMessages.length > 1) {
+              <article class="command-answer">
+                <img src="bucky.png" alt="" />
+                <div>
+                  <span>BUCKY'S ANSWER</span>
+                  <p>{{ teamMessages[teamMessages.length - 1].text }}</p>
+                </div>
+              </article>
+            }
+
+            <div class="next-task-layout">
+              <article class="next-best-task">
+                <header>
+                  <div>
+                    <span>YOUR NEXT BEST TASK</span>
+                    <h2>Restock Paper Towels</h2>
+                  </div>
+                  <b>HIGH PRIORITY</b>
+                </header>
+                <p class="task-why">
+                  <strong>What happened:</strong> Solink detected only 4
+                  packages on the shelf. Bucky checked the backroom before
+                  creating this task.
+                </p>
+                <div class="next-task-facts">
+                  <span><small>WHERE</small><b>Paper Goods, Aisle 6</b></span>
+                  <span><small>SHELF</small><b>2 â€¢ 4 packages</b></span>
+                  <span><small>BACKROOM</small><b>36 packages</b></span>
+                  <span><small>DO THIS</small><b>Bring 20 packages</b></span>
+                  <span><small>COMPLETE BY</small><b>10:45 AM</b></span>
+                  <span><small>TIME NEEDED</small><b>About 7 minutes</b></span>
+                </div>
+                <div class="vision-confidence">
+                  <span><i></i> Solink shelf alert â€¢ Confidence: 94%</span>
+                  <button
+                    (click)="sendTeamPrompt('The shelf count looks wrong')"
+                  >
+                    Count Looks Wrong
+                  </button>
+                </div>
+                <div class="next-task-actions">
+                  <button
+                    class="primary"
+                    (click)="updateTask(data.tasks()[0], 'In Progress')"
+                  >
+                    Start Task
+                  </button>
+                  <button (click)="showOnMap(data.products()[0])">
+                    Show Route
+                  </button>
+                  <button (click)="showTaskHelp(data.tasks()[0])">
+                    I Need Help
+                  </button>
+                </div>
+              </article>
+
+              <aside class="shift-plan">
+                <span>YOUR SHIFT PLAN</span>
+                <h3>Updated by Bucky at 9:18 AM</h3>
+                <ol>
+                  <li class="active">
+                    <b>First</b><span>Stock paper towels.</span>
+                  </li>
+                  <li><b>Next</b><span>Meet Truck 204 at 10:00 AM.</span></li>
+                  <li>
+                    <b>After that</b><span>Photograph the seasonal display.</span>
+                  </li>
+                  <li>
+                    <b>Before you leave</b><span>Clean Register 2.</span>
+                  </li>
+                </ol>
+                <p>
+                  The truck is late. Keep stocking Cleaning. Bucky will alert
+                  you five minutes before it arrives.
+                </p>
+              </aside>
+            </div>
+
+            <div class="command-summaries">
+              <button>
+                <mat-icon>task_alt</mat-icon><b>3</b
+                ><span>Tasks remaining</span>
+              </button>
+              <button>
+                <mat-icon>local_shipping</mat-icon><b>22 min</b
+                ><span>Truck delay</span>
+              </button>
+              <button>
+                <mat-icon>storefront</mat-icon><b>2</b
+                ><span>Areas need attention</span>
+              </button>
+              <button (click)="sendTeamPrompt('Show my urgent messages')">
+                <mat-icon>mark_email_unread</mat-icon><b>1</b
+                ><span>Action required</span>
+              </button>
+            </div>
+
+            <article class="act-now-message">
+              <mat-icon>priority_high</mat-icon>
+              <div>
+                <span>ACT NOW</span>
+                <h3>Remove Electric Balloon Pumps</h3>
+                <p>
+                  Remove SKU 406198 from Party and Backroom Bin P-14. This
+                  product action is due now. Time needed: 6 minutes.
+                </p>
+              </div>
+              <button>Start Removal</button>
+            </article>
+
+            <div class="guided-story">
+              <div>
+                <span
+                  >GUIDED EXECUTIVE DEMO â€¢ SCENE
+                  {{ associateDemoScene + 1 }} OF 8</span
+                >
+                <strong>{{
+                  [
+                    "The Current Pain",
+                    "Associate Opens Bucky",
+                    "Solink Creates the Task",
+                    "Map Guidance",
+                    "Truck Delay",
+                    "Customer Help",
+                    "Manager View",
+                    "Headquarters View"
+                  ][associateDemoScene]
+                }}</strong>
+              </div>
+              <button (click)="advanceAssociateDemo()">
+                Next Scene <mat-icon>arrow_forward</mat-icon>
+              </button>
+            </div>
+
+            <nav class="associate-bottom-nav" aria-label="Associate navigation">
+              <button class="active">
+                <mat-icon>home</mat-icon><span>Home</span>
+              </button>
+              <button><mat-icon>task_alt</mat-icon><span>Tasks</span></button>
+              <button (click)="openStoreMap()">
+                <mat-icon>map</mat-icon><span>Map</span>
+              </button>
+              <button><mat-icon>smart_toy</mat-icon><span>Ask Bucky</span></button>
+              <button><mat-icon>more_horiz</mat-icon><span>More</span></button>
+            </nav>
+          </section>
+
           <section class="associate-home page-section">
             <div class="associate-goals">
-              <div class="simple-section-title"><span>TODAY’S GOALS</span><h2>Keep your shift on track</h2></div>
+              <div class="simple-section-title">
+                <span>TODAY’S GOALS</span>
+                <h2>Keep your shift on track</h2>
+              </div>
               <div class="goal-list">
-                <button (click)="goToEmployeeSection('my-tasks')"><i class="green"></i><span><strong>Stock Aisle 6</strong><small>Paper towels need attention</small></span><mat-icon>chevron_right</mat-icon></button>
-                <button (click)="goToEmployeeSection('truck-updates')"><i class="green"></i><span><strong>Help unload truck</strong><small>8 of 10 pallets are done</small></span><mat-icon>chevron_right</mat-icon></button>
-                <button (click)="goToEmployeeSection('my-tasks')"><i class="green"></i><span><strong>Help with seasonal display</strong><small>Front display • 15 minutes</small></span><mat-icon>chevron_right</mat-icon></button>
-                <button (click)="goToEmployeeSection('my-tasks')"><i class="green"></i><span><strong>Clean checkout area</strong><small>Due by 2:30 PM</small></span><mat-icon>chevron_right</mat-icon></button>
+                <button (click)="goToEmployeeSection('my-tasks')">
+                  <i class="green"></i
+                  ><span
+                    ><strong>Stock Aisle 6</strong
+                    ><small>Paper towels need attention</small></span
+                  ><mat-icon>chevron_right</mat-icon>
+                </button>
+                <button (click)="goToEmployeeSection('truck-updates')">
+                  <i class="green"></i
+                  ><span
+                    ><strong>Help unload truck</strong
+                    ><small>8 of 10 pallets are done</small></span
+                  ><mat-icon>chevron_right</mat-icon>
+                </button>
+                <button (click)="goToEmployeeSection('my-tasks')">
+                  <i class="green"></i
+                  ><span
+                    ><strong>Help with seasonal display</strong
+                    ><small>Front display • 15 minutes</small></span
+                  ><mat-icon>chevron_right</mat-icon>
+                </button>
+                <button (click)="goToEmployeeSection('my-tasks')">
+                  <i class="green"></i
+                  ><span
+                    ><strong>Clean checkout area</strong
+                    ><small>Due by 2:30 PM</small></span
+                  ><mat-icon>chevron_right</mat-icon>
+                </button>
               </div>
             </div>
             <div class="store-status-simple">
-              <div class="simple-section-title"><span>STORE STATUS</span><h2>Everything at a glance</h2></div>
+              <div class="simple-section-title">
+                <span>STORE STATUS</span>
+                <h2>Everything at a glance</h2>
+              </div>
               <ul>
-                <li><mat-icon>check_circle</mat-icon><span>Truck is unloading now</span></li>
-                <li><mat-icon>check_circle</mat-icon><span>3 aisles need restocking</span></li>
-                <li><mat-icon>check_circle</mat-icon><span>Checkout wait: 2 minutes</span></li>
-                <li><mat-icon>check_circle</mat-icon><span>Store is running smoothly</span></li>
+                <li>
+                  <mat-icon>check_circle</mat-icon
+                  ><span>Truck is unloading now</span>
+                </li>
+                <li>
+                  <mat-icon>check_circle</mat-icon
+                  ><span>3 aisles need restocking</span>
+                </li>
+                <li>
+                  <mat-icon>check_circle</mat-icon
+                  ><span>Checkout wait: 2 minutes</span>
+                </li>
+                <li>
+                  <mat-icon>check_circle</mat-icon
+                  ><span>Store is running smoothly</span>
+                </li>
               </ul>
             </div>
             <div class="associate-big-actions">
-              <button (click)="goToEmployeeSection('my-tasks')"><span>📦</span><strong>My Tasks</strong></button>
-              <button (click)="goToEmployeeSection('restock-alert')"><span>📍</span><strong>Restock Items</strong></button>
-              <button (click)="goToEmployeeSection('truck-updates')"><span>🚚</span><strong>Truck Updates</strong></button>
-              <button (click)="openStoreMap()"><span>🗺️</span><strong>Store Map</strong></button>
-              <button (click)="goToEmployeeSection('associate-hub')"><span>💬</span><strong>Ask Bucky</strong></button>
+              <button (click)="goToEmployeeSection('my-tasks')">
+                <span>📦</span><strong>My Tasks</strong>
+              </button>
+              <button (click)="goToEmployeeSection('restock-alert')">
+                <span>📍</span><strong>Restock Items</strong>
+              </button>
+              <button (click)="goToEmployeeSection('truck-updates')">
+                <span>🚚</span><strong>Truck Updates</strong>
+              </button>
+              <button (click)="openStoreMap()">
+                <span>🗺️</span><strong>Store Map</strong>
+              </button>
+              <button (click)="goToEmployeeSection('associate-hub')">
+                <span>💬</span><strong>Ask Bucky</strong>
+              </button>
             </div>
           </section>
 
           <section class="weekly-schedule page-section" id="weekly-schedule">
-            <div class="schedule-heading"><div><span>MY WEEK</span><h2>Verlaine’s schedule</h2><p>July 27–August 2 · 32 scheduled hours</p></div><button (click)="sendTeamPrompt('Show my schedule for this week'); goToEmployeeSection('associate-hub')"><mat-icon>chat</mat-icon> Ask Bucky</button></div>
+            <div class="schedule-heading">
+              <div>
+                <span>MY WEEK</span>
+                <h2>Verlaine’s schedule</h2>
+                <p>July 27–August 2 · 32 scheduled hours</p>
+              </div>
+              <button
+                (click)="
+                  sendTeamPrompt('Show my schedule for this week');
+                  goToEmployeeSection('associate-hub')
+                "
+              >
+                <mat-icon>chat</mat-icon> Ask Bucky
+              </button>
+            </div>
             <div class="schedule-grid">
               @for (shift of weeklySchedule; track shift.day) {
-                <article [class.today]="shift.status === 'Today'" [class.off]="shift.status === 'Off'">
-                  <span>{{ shift.day }}<small>{{ shift.date }}</small></span>
+                <article
+                  [class.today]="shift.status === 'Today'"
+                  [class.off]="shift.status === 'Off'"
+                >
+                  <span
+                    >{{ shift.day }}<small>{{ shift.date }}</small></span
+                  >
                   <strong>{{ shift.time }}</strong>
                   <small>{{ shift.role }}</small>
                   <b>{{ shift.status }}</b>
@@ -786,138 +2029,446 @@
             </div>
           </section>
 
-          @if (data.tasks()[0].status !== 'Complete') {
+          @if (data.tasks()[0].status !== "Complete") {
             <section class="restock-alert-card page-section" id="restock-alert">
-              <div class="alert-bucky"><img src="bucky.png" alt="" /><span>BUCKY ALERT</span></div>
-              <div class="alert-product"><span>🧻</span><div><h2>Paper towels are running low.</h2><p>Please restock within 15 minutes.</p></div></div>
-              <div class="alert-counts"><div><small>Shelf</small><strong>4 left</strong></div><div><small>Backroom</small><strong>52</strong></div><div><small>Location</small><strong>Aisle 6</strong></div></div>
-              <div class="alert-actions"><button (click)="updateTask(data.tasks()[0], 'In Progress')">Start Restocking</button><button (click)="showTaskHelp(data.tasks()[0])">Need Help</button><button (click)="updateTask(data.tasks()[0], 'In Progress')">Already Working On It</button></div>
+              <div class="alert-bucky">
+                <img src="bucky.png" alt="" /><span>BUCKY ALERT</span>
+              </div>
+              <div class="alert-product">
+                <span>🧻</span>
+                <div>
+                  <h2>Paper towels are running low.</h2>
+                  <p>Please restock within 15 minutes.</p>
+                </div>
+              </div>
+              <div class="alert-counts">
+                <div><small>Shelf</small><strong>4 left</strong></div>
+                <div><small>Backroom</small><strong>52</strong></div>
+                <div><small>Location</small><strong>Aisle 6</strong></div>
+              </div>
+              <div class="alert-actions">
+                <button (click)="updateTask(data.tasks()[0], 'In Progress')">
+                  Start Restocking</button
+                ><button (click)="showTaskHelp(data.tasks()[0])">
+                  Need Help</button
+                ><button (click)="updateTask(data.tasks()[0], 'In Progress')">
+                  Already Working On It
+                </button>
+              </div>
             </section>
           }
         }
 
         <section class="employee-item-scanner page-section">
           <div class="scanner-heading">
-            <div><span>SCAN &amp; CHECK</span><h2>Item sales and inventory</h2><p>Scan with a Zebra device or enter a product ID.</p></div>
+            <div>
+              <span>SCAN &amp; CHECK</span>
+              <h2>Item sales and inventory</h2>
+              <p>Scan with a Zebra device or enter a product ID.</p>
+            </div>
             <mat-icon>qr_code_scanner</mat-icon>
           </div>
           <div class="scanner-controls">
-            <label><mat-icon>barcode_reader</mat-icon><input [(ngModel)]="employeeScanText" placeholder="Product ID or name — try DT1001" (keyup.enter)="scanEmployeeItem()" /></label>
-            <button (click)="scanEmployeeItem()"><mat-icon>search</mat-icon> Check Item</button>
-            <button class="camera-scan" (click)="scanEmployeeItem('DT1001')"><mat-icon>photo_camera</mat-icon> Simulate Scan</button>
+            <label
+              ><mat-icon>barcode_reader</mat-icon
+              ><input
+                [(ngModel)]="employeeScanText"
+                placeholder="Product ID or name — try DT1001"
+                (keyup.enter)="scanEmployeeItem()"
+            /></label>
+            <button (click)="scanEmployeeItem()">
+              <mat-icon>search</mat-icon> Check Item
+            </button>
+            <button class="camera-scan" (click)="scanEmployeeItem('DT1001')">
+              <mat-icon>photo_camera</mat-icon> Simulate Scan
+            </button>
           </div>
-          @if (employeeScanMessage) { <div class="scanner-error">{{ employeeScanMessage }}</div> }
+          @if (employeeScanMessage) {
+            <div class="scanner-error">{{ employeeScanMessage }}</div>
+          }
           @if (scannedEmployeeProduct && scannedSalesInsight) {
             <div class="scan-result">
-              <div class="scan-product"><span>{{ scannedEmployeeProduct.image }}</span><div><small>{{ scannedEmployeeProduct.productId }}</small><h3>{{ scannedEmployeeProduct.name }}</h3><p>Aisle {{ scannedEmployeeProduct.aisle }} · {{ scannedEmployeeProduct.section }}</p></div><b class="{{ scannedSalesInsight.unitsToday === 0 ? 'zero' : 'selling' }}">{{ scannedSalesInsight.unitsToday === 0 ? 'ZERO SALES' : 'SELLING' }}</b></div>
+              <div class="scan-product">
+                <span>{{ scannedEmployeeProduct.image }}</span>
+                <div>
+                  <small>{{ scannedEmployeeProduct.productId }}</small>
+                  <h3>{{ scannedEmployeeProduct.name }}</h3>
+                  <p>
+                    Aisle {{ scannedEmployeeProduct.aisle }} ·
+                    {{ scannedEmployeeProduct.section }}
+                  </p>
+                </div>
+                <b
+                  class="{{
+                    scannedSalesInsight.unitsToday === 0 ? 'zero' : 'selling'
+                  }}"
+                  >{{
+                    scannedSalesInsight.unitsToday === 0
+                      ? "ZERO SALES"
+                      : "SELLING"
+                  }}</b
+                >
+              </div>
               <div class="scan-metrics">
-                <article><small>On Hand</small><strong>{{ scannedEmployeeProduct.totalInventory }}</strong><span>Total units</span></article>
-                <article><small>Sales Floor</small><strong>{{ scannedEmployeeProduct.shelfQuantity }}</strong><span>On shelf</span></article>
-                <article><small>Backroom</small><strong>{{ scannedEmployeeProduct.backroomQuantity }}</strong><span>Available</span></article>
-                <article><small>Sold Today</small><strong>{{ scannedSalesInsight.unitsToday }}</strong><span>Expected {{ scannedSalesInsight.expectedDaily }}</span></article>
-                <article><small>Last Sale</small><strong class="last-sale">{{ scannedSalesInsight.lastSale }}</strong><span>{{ scannedSalesInsight.zeroSalesHours ? scannedSalesInsight.zeroSalesHours + ' hours without a sale' : 'Selling normally' }}</span></article>
+                <article>
+                  <small>On Hand</small
+                  ><strong>{{ scannedEmployeeProduct.totalInventory }}</strong
+                  ><span>Total units</span>
+                </article>
+                <article>
+                  <small>Sales Floor</small
+                  ><strong>{{ scannedEmployeeProduct.shelfQuantity }}</strong
+                  ><span>On shelf</span>
+                </article>
+                <article>
+                  <small>Backroom</small
+                  ><strong>{{ scannedEmployeeProduct.backroomQuantity }}</strong
+                  ><span>Available</span>
+                </article>
+                <article>
+                  <small>Sold Today</small
+                  ><strong>{{ scannedSalesInsight.unitsToday }}</strong
+                  ><span>Expected {{ scannedSalesInsight.expectedDaily }}</span>
+                </article>
+                <article>
+                  <small>Last Sale</small
+                  ><strong class="last-sale">{{
+                    scannedSalesInsight.lastSale
+                  }}</strong
+                  ><span>{{
+                    scannedSalesInsight.zeroSalesHours
+                      ? scannedSalesInsight.zeroSalesHours +
+                        " hours without a sale"
+                      : "Selling normally"
+                  }}</span>
+                </article>
               </div>
               @if (scannedSalesInsight.unitsToday === 0) {
-                <div class="zero-sales-action"><mat-icon>warning</mat-icon><div><strong>Zero-sales check recommended</strong><span>Verify the shelf location, shelf count, price label, and that the item is easy for customers to see.</span></div><button (click)="sendTeamPrompt('Why does this scanned item have zero sales?'); teamChatOpen = true">Ask Associate Hub</button></div>
+                <div class="zero-sales-action">
+                  <mat-icon>warning</mat-icon>
+                  <div>
+                    <strong>Zero-sales check recommended</strong
+                    ><span
+                      >Verify the shelf location, shelf count, price label, and
+                      that the item is easy for customers to see.</span
+                    >
+                  </div>
+                  <button
+                    (click)="
+                      sendTeamPrompt(
+                        'Why does this scanned item have zero sales?'
+                      );
+                      teamChatOpen = true
+                    "
+                  >
+                    Ask Associate Hub
+                  </button>
+                </div>
               } @else {
-                <div class="selling-normal"><mat-icon>check_circle</mat-icon> Sales activity and on-hand inventory look normal.</div>
+                <div class="selling-normal">
+                  <mat-icon>check_circle</mat-icon> Sales activity and on-hand
+                  inventory look normal.
+                </div>
               }
             </div>
           }
         </section>
 
         <section class="employee-kpis page-section">
-          <article><mat-icon>task_alt</mat-icon><span>Tasks complete</span><strong>{{ taskCompletion }}%</strong></article>
-          <article><mat-icon>warning</mat-icon><span>Inventory alerts</span><strong>{{ lowStockProducts.length }}</strong></article>
-          <article><mat-icon>local_shipping</mat-icon><span>Truck</span><strong>8/10 pallets</strong></article>
-          <article><mat-icon>inventory</mat-icon><span>Shelf availability</span><strong>94%</strong></article>
+          <article>
+            <mat-icon>task_alt</mat-icon><span>Tasks complete</span
+            ><strong>{{ taskCompletion }}%</strong>
+          </article>
+          <article>
+            <mat-icon>warning</mat-icon><span>Inventory alerts</span
+            ><strong>{{ lowStockProducts.length }}</strong>
+          </article>
+          <article>
+            <mat-icon>local_shipping</mat-icon><span>Truck</span
+            ><strong>8/10 pallets</strong>
+          </article>
+          <article>
+            <mat-icon>inventory</mat-icon><span>Shelf availability</span
+            ><strong>94%</strong>
+          </article>
         </section>
 
         <section class="employee-layout page-section" id="my-tasks">
           <div class="task-board">
-            <div class="portal-card-head"><div><span>TODAY’S WORK</span><h2>Verlaine’s task queue</h2></div><b>{{ data.tasks().length }} tasks</b></div>
+            <div class="portal-card-head">
+              <div>
+                <span>TODAY’S WORK</span>
+                <h2>Verlaine’s task queue</h2>
+              </div>
+              <b>{{ data.tasks().length }} tasks</b>
+            </div>
             @for (task of orderedTasks; track task.taskId) {
               <article class="task-row">
-                <span class="priority {{ task.priority.toLowerCase() }}">{{ task.priority }}</span>
-                <div class="task-main"><strong>{{ task.name }}</strong><small>{{ task.location }} • Due {{ task.dueTime }} • {{ task.estimatedMinutes }} min</small><p>{{ task.instructions }}</p></div>
+                <span class="priority {{ task.priority.toLowerCase() }}">{{
+                  task.priority
+                }}</span>
+                <div class="task-main">
+                  <strong>{{ task.name }}</strong
+                  ><small
+                    >{{ task.location }} • Due {{ task.dueTime }} •
+                    {{ task.estimatedMinutes }} min</small
+                  >
+                  <p>{{ task.instructions }}</p>
+                </div>
                 <div class="task-buttons">
-                  @if (task.status === 'Not Started') { <button class="start" (click)="updateTask(task, 'In Progress')">Start Task</button> }
-                  @if (task.status === 'In Progress') { <button class="complete" (click)="updateTask(task, 'Complete')">✓ Complete</button> }
-                  @if (task.status === 'Complete') { <span class="done-label"><mat-icon>check_circle</mat-icon> Complete</span> }
-                  @if (task.status === 'Needs Assistance') { <button class="help" (click)="showTaskHelp(task)">Open Help</button> }
-                  @if (task.status !== 'Complete') { <button class="more-task" (click)="showTaskHelp(task)">Need Help</button> }
+                  @if (task.status === "Not Started") {
+                    <button
+                      class="start"
+                      (click)="updateTask(task, 'In Progress')"
+                    >
+                      Start Task
+                    </button>
+                  }
+                  @if (task.status === "In Progress") {
+                    <button
+                      class="complete"
+                      (click)="updateTask(task, 'Complete')"
+                    >
+                      ✓ Complete
+                    </button>
+                  }
+                  @if (task.status === "Complete") {
+                    <span class="done-label"
+                      ><mat-icon>check_circle</mat-icon> Complete</span
+                    >
+                  }
+                  @if (task.status === "Needs Assistance") {
+                    <button class="help" (click)="showTaskHelp(task)">
+                      Open Help
+                    </button>
+                  }
+                  @if (task.status !== "Complete") {
+                    <button class="more-task" (click)="showTaskHelp(task)">
+                      Need Help
+                    </button>
+                  }
                 </div>
               </article>
             }
           </div>
 
           @if (teamChatOpen) {
-          <aside class="team-assist associate-hub-popout" id="associate-hub">
-            <header><img src="bucky.png" alt="" /><div><strong>Associate Hub</strong><span><i></i> Bucky for Associates</span></div><button class="team-chat-close" (click)="teamChatOpen = false" aria-label="Close Associate Hub"><mat-icon>close</mat-icon></button></header>
-            <div class="team-messages">
-              @for (message of teamMessages; track $index) {
-                <div [class.employee-message]="message.author === 'employee'"><b>{{ message.author === 'bucky' ? 'Bucky' : 'Verlaine' }}</b><p>{{ message.text }}</p></div>
-              }
-            </div>
-            <div class="team-prompts">
-              <button (click)="sendTeamPrompt('Show my priorities')">Show my priorities</button>
-              <button (click)="sendTeamPrompt(`Check today's truck`)">Check today’s truck</button>
-              <button (click)="sendTeamPrompt('Find paper towels in backroom inventory')">Backroom inventory</button>
-              <button (click)="sendTeamPrompt('Show low-stock items')">Low-stock items</button>
-              <button (click)="sendTeamPrompt('Check the scanned item for zero sales and on hand inventory')">Zero sales check</button>
-              <button (click)="sendTeamPrompt('Review overdue tasks')">Overdue tasks</button>
-              <button (click)="sendTeamPrompt('Report damaged merchandise')">Report damage</button>
-              <button (click)="sendTeamPrompt('Check aisle accuracy')">Aisle accuracy</button>
-              <button (click)="sendTeamPrompt('Help a customer')">Help a customer</button>
-              <button (click)="sendTeamPrompt('I need help with Asset Protection')">Asset Protection help</button>
-              <button (click)="sendTeamPrompt('I need help with GOLD scores')">GOLD score help</button>
-              <button (click)="sendTeamPrompt('Connect me with the right person at the SSC for a store issue')">Contact the SSC</button>
-              <button (click)="sendTeamPrompt('What should I do if my store is robbed?')">Robbery safety</button>
-              <button (click)="sendTeamPrompt('Show my schedule for this week')">My schedule</button>
-            </div>
-            @if (incidentGuide) {
-              <section class="incident-guide">
-                <div class="incident-title"><mat-icon>health_and_safety</mat-icon><div><span>SAFETY PROCEDURE</span><h3>{{ incidentGuide.title }}</h3></div></div>
-                <ol>@for (step of incidentGuide.steps; track step; let index = $index) { <li><b>{{ index + 1 }}</b><span>{{ step }}</span></li> }</ol>
-                <button (click)="toggleTrainingVideo()"><mat-icon>play_circle</mat-icon>{{ trainingVideoOpen ? 'Close Training Video' : 'Watch 2-Minute Training Video' }}</button>
-                @if (trainingVideoOpen) {
-                  <div class="training-video">
-                    <div><mat-icon>play_arrow</mat-icon></div>
-                    <span><strong>{{ incidentGuide.videoTitle }}</strong><small>Simulated training video · 2:08</small></span>
-                    <p>This presentation card represents an approved Dollar Tree training video. A production system would stream controlled SSC learning content.</p>
+            <aside class="team-assist associate-hub-popout" id="associate-hub">
+              <header>
+                <img src="bucky.png" alt="" />
+                <div>
+                  <strong>Associate Hub</strong
+                  ><span><i></i> Bucky for Associates</span>
+                </div>
+                <button
+                  class="team-chat-close"
+                  (click)="teamChatOpen = false"
+                  aria-label="Close Associate Hub"
+                >
+                  <mat-icon>close</mat-icon>
+                </button>
+              </header>
+              <div class="team-messages">
+                @for (message of teamMessages; track $index) {
+                  <div [class.employee-message]="message.author === 'employee'">
+                    <b>{{
+                      message.author === "bucky" ? "Bucky" : "Verlaine"
+                    }}</b>
+                    <p>{{ message.text }}</p>
                   </div>
                 }
-                <small class="procedure-note">Concept guidance only. Employees should always follow current Dollar Tree policy, manager direction, and emergency procedures.</small>
-              </section>
-            }
-            @if (activeSscRoute) {
-              <section class="ssc-support-card">
-                <div class="ssc-route-head">
-                  <span><mat-icon>support_agent</mat-icon> SSC SUPPORT ROUTE</span>
-                  <button (click)="clearSscRoute()" aria-label="Close support route"><mat-icon>close</mat-icon></button>
-                </div>
-                <h3>{{ activeSscRoute.team }}</h3>
-                <p>Bucky matched this request with a <strong>{{ activeSscRoute.specialist }}</strong>.</p>
-                <div class="ssc-route-meta">
-                  <span><small>Priority</small><b class="{{ activeSscRoute.priority | lowercase }}">{{ activeSscRoute.priority }}</b></span>
-                  <span><small>Connection</small><b>{{ activeSscRoute.channel }}</b></span>
-                </div>
-                <div class="ssc-checklist">
-                  <small>Have this ready:</small>
-                  @for (item of activeSscRoute.gather; track item) { <span><mat-icon>check_circle</mat-icon>{{ item }}</span> }
-                </div>
-                @if (!sscCaseNumber) {
-                  <button class="ssc-connect" (click)="createSscCase()"><mat-icon>headset_mic</mat-icon> Create Demo Support Case</button>
-                } @else {
-                  <div class="ssc-case-created"><mat-icon>task_alt</mat-icon><span><strong>{{ sscCaseNumber }}</strong><small>Simulated case ready · Nothing was sent outside this demo</small></span></div>
-                }
-                @if (activeSscRoute.priority === 'Urgent') {
-                  <p class="ssc-urgent-note"><mat-icon>warning</mat-icon> If anyone is in immediate danger, follow the store emergency procedure and contact emergency services first.</p>
-                }
-              </section>
-            }
-            <form (ngSubmit)="submitTeamPrompt()"><input [(ngModel)]="teamPrompt" name="teamPrompt" placeholder="Ask a question or say “I need SSC help…”" /><button><mat-icon>arrow_upward</mat-icon></button></form>
-          </aside>
+              </div>
+              <div class="team-prompts">
+                <button (click)="sendTeamPrompt('Show my priorities')">
+                  Show my priorities
+                </button>
+                <button (click)="sendTeamPrompt(`Check today's truck`)">
+                  Check today’s truck
+                </button>
+                <button
+                  (click)="
+                    sendTeamPrompt('Find paper towels in backroom inventory')
+                  "
+                >
+                  Backroom inventory
+                </button>
+                <button (click)="sendTeamPrompt('Show low-stock items')">
+                  Low-stock items
+                </button>
+                <button
+                  (click)="
+                    sendTeamPrompt(
+                      'Check the scanned item for zero sales and on hand inventory'
+                    )
+                  "
+                >
+                  Zero sales check
+                </button>
+                <button (click)="sendTeamPrompt('Review overdue tasks')">
+                  Overdue tasks
+                </button>
+                <button (click)="sendTeamPrompt('Report damaged merchandise')">
+                  Report damage
+                </button>
+                <button (click)="sendTeamPrompt('Check aisle accuracy')">
+                  Aisle accuracy
+                </button>
+                <button (click)="sendTeamPrompt('Help a customer')">
+                  Help a customer
+                </button>
+                <button
+                  (click)="sendTeamPrompt('I need help with Asset Protection')"
+                >
+                  Asset Protection help
+                </button>
+                <button
+                  (click)="sendTeamPrompt('I need help with GOLD scores')"
+                >
+                  GOLD score help
+                </button>
+                <button
+                  (click)="
+                    sendTeamPrompt(
+                      'Connect me with the right person at the SSC for a store issue'
+                    )
+                  "
+                >
+                  Contact the SSC
+                </button>
+                <button
+                  (click)="
+                    sendTeamPrompt('What should I do if my store is robbed?')
+                  "
+                >
+                  Robbery safety
+                </button>
+                <button
+                  (click)="sendTeamPrompt('Show my schedule for this week')"
+                >
+                  My schedule
+                </button>
+              </div>
+              @if (incidentGuide) {
+                <section class="incident-guide">
+                  <div class="incident-title">
+                    <mat-icon>health_and_safety</mat-icon>
+                    <div>
+                      <span>SAFETY PROCEDURE</span>
+                      <h3>{{ incidentGuide.title }}</h3>
+                    </div>
+                  </div>
+                  <ol>
+                    @for (
+                      step of incidentGuide.steps;
+                      track step;
+                      let index = $index
+                    ) {
+                      <li>
+                        <b>{{ index + 1 }}</b
+                        ><span>{{ step }}</span>
+                      </li>
+                    }
+                  </ol>
+                  <button (click)="toggleTrainingVideo()">
+                    <mat-icon>play_circle</mat-icon
+                    >{{
+                      trainingVideoOpen
+                        ? "Close Training Video"
+                        : "Watch 2-Minute Training Video"
+                    }}
+                  </button>
+                  @if (trainingVideoOpen) {
+                    <div class="training-video">
+                      <div><mat-icon>play_arrow</mat-icon></div>
+                      <span
+                        ><strong>{{ incidentGuide.videoTitle }}</strong
+                        ><small>Simulated training video · 2:08</small></span
+                      >
+                      <p>
+                        This presentation card represents an approved Dollar
+                        Tree training video. A production system would stream
+                        controlled SSC learning content.
+                      </p>
+                    </div>
+                  }
+                  <small class="procedure-note"
+                    >Concept guidance only. Employees should always follow
+                    current Dollar Tree policy, manager direction, and emergency
+                    procedures.</small
+                  >
+                </section>
+              }
+              @if (activeSscRoute) {
+                <section class="ssc-support-card">
+                  <div class="ssc-route-head">
+                    <span
+                      ><mat-icon>support_agent</mat-icon> SSC SUPPORT
+                      ROUTE</span
+                    >
+                    <button
+                      (click)="clearSscRoute()"
+                      aria-label="Close support route"
+                    >
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </div>
+                  <h3>{{ activeSscRoute.team }}</h3>
+                  <p>
+                    Bucky matched this request with a
+                    <strong>{{ activeSscRoute.specialist }}</strong
+                    >.
+                  </p>
+                  <div class="ssc-route-meta">
+                    <span
+                      ><small>Priority</small
+                      ><b class="{{ activeSscRoute.priority | lowercase }}">{{
+                        activeSscRoute.priority
+                      }}</b></span
+                    >
+                    <span
+                      ><small>Connection</small
+                      ><b>{{ activeSscRoute.channel }}</b></span
+                    >
+                  </div>
+                  <div class="ssc-checklist">
+                    <small>Have this ready:</small>
+                    @for (item of activeSscRoute.gather; track item) {
+                      <span><mat-icon>check_circle</mat-icon>{{ item }}</span>
+                    }
+                  </div>
+                  @if (!sscCaseNumber) {
+                    <button class="ssc-connect" (click)="createSscCase()">
+                      <mat-icon>headset_mic</mat-icon> Create Demo Support Case
+                    </button>
+                  } @else {
+                    <div class="ssc-case-created">
+                      <mat-icon>task_alt</mat-icon
+                      ><span
+                        ><strong>{{ sscCaseNumber }}</strong
+                        ><small
+                          >Simulated case ready · Nothing was sent outside this
+                          demo</small
+                        ></span
+                      >
+                    </div>
+                  }
+                  @if (activeSscRoute.priority === "Urgent") {
+                    <p class="ssc-urgent-note">
+                      <mat-icon>warning</mat-icon> If anyone is in immediate
+                      danger, follow the store emergency procedure and contact
+                      emergency services first.
+                    </p>
+                  }
+                </section>
+              }
+              <form (ngSubmit)="submitTeamPrompt()">
+                <input
+                  [(ngModel)]="teamPrompt"
+                  name="teamPrompt"
+                  placeholder="Ask a question or say “I need SSC help…”"
+                /><button><mat-icon>arrow_upward</mat-icon></button>
+              </form>
+            </aside>
           }
         </section>
 
@@ -925,78 +2476,225 @@
           <aside class="task-assistant-popin">
             <header>
               <img src="bucky.png" alt="" />
-              <div><span>{{ taskAssistantMode === 'help' ? 'BUCKY TASK HELP' : 'TASK IN PROGRESS' }}</span><h2>{{ activeTaskAssistant.name }}</h2></div>
-              <button (click)="closeTaskAssistant()" aria-label="Close task assistant"><mat-icon>close</mat-icon></button>
+              <div>
+                <span>{{
+                  taskAssistantMode === "help"
+                    ? "BUCKY TASK HELP"
+                    : "TASK IN PROGRESS"
+                }}</span>
+                <h2>{{ activeTaskAssistant.name }}</h2>
+              </div>
+              <button
+                (click)="closeTaskAssistant()"
+                aria-label="Close task assistant"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
             </header>
             <div class="task-assistant-location">
-              <span><mat-icon>location_on</mat-icon><b>{{ activeTaskAssistant.location }}</b></span>
-              <span><mat-icon>schedule</mat-icon><b>{{ activeTaskAssistant.estimatedMinutes }} minutes</b></span>
-              <span><mat-icon>flag</mat-icon><b>{{ activeTaskAssistant.priority }} priority</b></span>
+              <span
+                ><mat-icon>location_on</mat-icon
+                ><b>{{ activeTaskAssistant.location }}</b></span
+              >
+              <span
+                ><mat-icon>schedule</mat-icon
+                ><b>{{ activeTaskAssistant.estimatedMinutes }} minutes</b></span
+              >
+              <span
+                ><mat-icon>flag</mat-icon
+                ><b>{{ activeTaskAssistant.priority }} priority</b></span
+              >
             </div>
             <section>
               <small>BUCKY’S INSTRUCTIONS</small>
               <p>{{ activeTaskAssistant.instructions }}</p>
               @if (activeTaskAssistant.relatedProductId) {
-                <p class="task-check"><mat-icon>inventory_2</mat-icon> Confirm the shelf count before marking this task complete.</p>
+                <p class="task-check">
+                  <mat-icon>inventory_2</mat-icon> Confirm the shelf count
+                  before marking this task complete.
+                </p>
               }
             </section>
-            @if (taskAssistantMode === 'help') {
+            @if (taskAssistantMode === "help") {
               <div class="task-help-options">
                 <strong>What do you need?</strong>
-                <button (click)="sendTeamPrompt('I need instructions for ' + activeTaskAssistant.name)"><mat-icon>menu_book</mat-icon> Show More Instructions</button>
-                <button (click)="notifyTaskLeader('SM')"><mat-icon>supervisor_account</mat-icon> Notify Store Manager</button>
-                <button (click)="notifyTaskLeader('DM')"><mat-icon>support_agent</mat-icon> Escalate to District Manager</button>
+                <button
+                  (click)="
+                    sendTeamPrompt(
+                      'I need instructions for ' + activeTaskAssistant.name
+                    )
+                  "
+                >
+                  <mat-icon>menu_book</mat-icon> Show More Instructions
+                </button>
+                <button (click)="notifyTaskLeader('SM')">
+                  <mat-icon>supervisor_account</mat-icon> Notify Store Manager
+                </button>
+                <button (click)="notifyTaskLeader('DM')">
+                  <mat-icon>support_agent</mat-icon> Escalate to District
+                  Manager
+                </button>
               </div>
             }
-            @if (taskEscalationMessage) { <div class="task-escalation-confirm"><mat-icon>notifications_active</mat-icon>{{ taskEscalationMessage }}</div> }
+            @if (taskEscalationMessage) {
+              <div class="task-escalation-confirm">
+                <mat-icon>notifications_active</mat-icon
+                >{{ taskEscalationMessage }}
+              </div>
+            }
             <footer>
-              <button class="task-still-working" (click)="closeTaskAssistant()">Keep Working</button>
-              <button class="task-mark-complete" (click)="updateTask(activeTaskAssistant, 'Complete')"><mat-icon>check_circle</mat-icon> Mark Complete</button>
+              <button class="task-still-working" (click)="closeTaskAssistant()">
+                Keep Working
+              </button>
+              <button
+                class="task-mark-complete"
+                (click)="updateTask(activeTaskAssistant, 'Complete')"
+              >
+                <mat-icon>check_circle</mat-icon> Mark Complete
+              </button>
             </footer>
           </aside>
         }
 
         <section class="smart-backroom page-section">
-          <div class="portal-card-head"><div><span>SMART BACKROOM</span><h2>Find it without searching every shelf</h2></div><mat-icon>warehouse</mat-icon></div>
-          <label><mat-icon>search</mat-icon><input [(ngModel)]="backroomSearch" placeholder="Search: AA batteries" /></label>
+          <div class="portal-card-head">
+            <div>
+              <span>SMART BACKROOM</span>
+              <h2>Find it without searching every shelf</h2>
+            </div>
+            <mat-icon>warehouse</mat-icon>
+          </div>
+          <label
+            ><mat-icon>search</mat-icon
+            ><input
+              [(ngModel)]="backroomSearch"
+              placeholder="Search: AA batteries"
+          /></label>
           <div class="backroom-results">
-            @for (product of backroomResults; track product.productId; let index = $index) {
-              <article><span>{{ product.image }}</span><div><strong>{{ product.name }}</strong><small>Section {{ ['B','C','A'][index % 3] }} • Shelf {{ index + 2 }} • Bin {{ 12 + index * 3 }}</small></div><b>{{ product.backroomQuantity }} available</b><button (click)="takeMeThere(product)">Navigate</button></article>
+            @for (
+              product of backroomResults;
+              track product.productId;
+              let index = $index
+            ) {
+              <article>
+                <span>{{ product.image }}</span>
+                <div>
+                  <strong>{{ product.name }}</strong
+                  ><small
+                    >Section {{ ["B", "C", "A"][index % 3] }} • Shelf
+                    {{ index + 2 }} • Bin {{ 12 + index * 3 }}</small
+                  >
+                </div>
+                <b>{{ product.backroomQuantity }} available</b
+                ><button (click)="takeMeThere(product)">Navigate</button>
+              </article>
             }
           </div>
         </section>
 
         <section class="truck-operations page-section" id="truck-updates">
-          <div class="portal-card-head"><div><span>WHERE IS MY TRUCK?</span><h2>Delivery {{ data.truck.truckId }}</h2></div><b>{{ data.truck.status }}</b></div>
+          <div class="portal-card-head">
+            <div>
+              <span>WHERE IS MY TRUCK?</span>
+              <h2>Delivery {{ data.truck.truckId }}</h2>
+            </div>
+            <b>{{ data.truck.status }}</b>
+          </div>
           <div class="truck-operation-grid">
-            <div class="route-map"><span class="dc">Chesapeake DC</span><i></i><i></i><i></i><span class="store-stop">Future Store #2031</span><mat-icon>local_shipping</mat-icon></div>
+            <div class="route-map">
+              <span class="dc">Chesapeake DC</span><i></i><i></i><i></i
+              ><span class="store-stop">Future Store #2031</span
+              ><mat-icon>local_shipping</mat-icon>
+            </div>
             <div class="delivery-facts">
-              <div><small>Scheduled</small><strong>{{ data.truck.scheduledArrival }}</strong></div>
-              <div><small>Actual arrival</small><strong>{{ data.truck.actualArrival }}</strong></div>
-              <div><small>Pallets unloaded</small><strong>{{ data.truck.palletsUnloaded }} of {{ data.truck.pallets }}</strong></div>
-              <div><small>Est. completion</small><strong>{{ data.truck.estimatedCompletion }}</strong></div>
-              <div class="unload-progress"><span><b>Unload progress</b><b>80%</b></span><div><i></i></div></div>
-              <p>Contents: {{ data.truck.products.join(', ') }}</p>
+              <div>
+                <small>Scheduled</small
+                ><strong>{{ data.truck.scheduledArrival }}</strong>
+              </div>
+              <div>
+                <small>Actual arrival</small
+                ><strong>{{ data.truck.actualArrival }}</strong>
+              </div>
+              <div>
+                <small>Pallets unloaded</small
+                ><strong
+                  >{{ data.truck.palletsUnloaded }} of
+                  {{ data.truck.pallets }}</strong
+                >
+              </div>
+              <div>
+                <small>Est. completion</small
+                ><strong>{{ data.truck.estimatedCompletion }}</strong>
+              </div>
+              <div class="unload-progress">
+                <span><b>Unload progress</b><b>80%</b></span>
+                <div><i></i></div>
+              </div>
+              <p>Contents: {{ data.truck.products.join(", ") }}</p>
             </div>
           </div>
         </section>
 
         <section class="solink-intelligence page-section">
-          <div class="portal-card-head"><div><span>SOLINK SMART STORE INTELLIGENCE</span><h2>Product flow, verified in real time</h2></div><b>Privacy focused</b></div>
-          <div class="intelligence-flow">
-            <div><mat-icon>local_shipping</mat-icon><strong>Truck</strong><span>Detected 8:42 AM</span></div><mat-icon>arrow_forward</mat-icon>
-            <div><mat-icon>move_to_inbox</mat-icon><strong>Loading Area</strong><span>8/10 pallets</span></div><mat-icon>arrow_forward</mat-icon>
-            <div><mat-icon>warehouse</mat-icon><strong>Backroom</strong><span>86% verified</span></div><mat-icon>arrow_forward</mat-icon>
-            <div><mat-icon>storefront</mat-icon><strong>Sales Floor</strong><span>14 waiting</span></div><mat-icon>arrow_forward</mat-icon>
-            <div><mat-icon>shopping_cart_checkout</mat-icon><strong>Purchase</strong><span>Inventory updated</span></div>
+          <div class="portal-card-head">
+            <div>
+              <span>SOLINK SMART STORE INTELLIGENCE</span>
+              <h2>Product flow, verified in real time</h2>
+            </div>
+            <b>Privacy focused</b>
           </div>
-          <div class="intelligence-metrics"><span><b>3</b> shelf mismatches</span><span><b>11 min</b> average restock</span><span><b>94%</b> shelf availability</span><span><b>2 min</b> checkout wait</span></div>
-          <p class="privacy-copy"><mat-icon>shield</mat-icon> Dollar Tree 2031 uses privacy-focused, aggregated store analytics. The system is designed to improve product availability and store operations, not to identify individual customers.</p>
+          <div class="intelligence-flow">
+            <div>
+              <mat-icon>local_shipping</mat-icon><strong>Truck</strong
+              ><span>Detected 8:42 AM</span>
+            </div>
+            <mat-icon>arrow_forward</mat-icon>
+            <div>
+              <mat-icon>move_to_inbox</mat-icon><strong>Loading Area</strong
+              ><span>8/10 pallets</span>
+            </div>
+            <mat-icon>arrow_forward</mat-icon>
+            <div>
+              <mat-icon>warehouse</mat-icon><strong>Backroom</strong
+              ><span>86% verified</span>
+            </div>
+            <mat-icon>arrow_forward</mat-icon>
+            <div>
+              <mat-icon>storefront</mat-icon><strong>Sales Floor</strong
+              ><span>14 waiting</span>
+            </div>
+            <mat-icon>arrow_forward</mat-icon>
+            <div>
+              <mat-icon>shopping_cart_checkout</mat-icon
+              ><strong>Purchase</strong><span>Inventory updated</span>
+            </div>
+          </div>
+          <div class="intelligence-metrics">
+            <span><b>3</b> shelf mismatches</span
+            ><span><b>11 min</b> average restock</span
+            ><span><b>94%</b> shelf availability</span
+            ><span><b>2 min</b> checkout wait</span>
+          </div>
+          <p class="privacy-copy">
+            <mat-icon>shield</mat-icon> Dollar Tree 2031 uses privacy-focused,
+            aggregated store analytics. The system is designed to improve
+            product availability and store operations, not to identify
+            individual customers.
+          </p>
         </section>
-        <button class="associate-hub-launcher" (click)="teamChatOpen = !teamChatOpen" [class.open]="teamChatOpen">
+        <button
+          class="associate-hub-launcher"
+          (click)="teamChatOpen = !teamChatOpen"
+          [class.open]="teamChatOpen"
+        >
           <img src="bucky.png" alt="" />
-          <span><small>EMPLOYEE ASSISTANT</small><strong>{{ teamChatOpen ? 'Close Associate Hub' : 'Ask Associate Hub' }}</strong></span>
-          <mat-icon>{{ teamChatOpen ? 'close' : 'chat' }}</mat-icon>
+          <span
+            ><small>EMPLOYEE ASSISTANT</small
+            ><strong>{{
+              teamChatOpen ? "Close Associate Hub" : "Ask Associate Hub"
+            }}</strong></span
+          >
+          <mat-icon>{{ teamChatOpen ? "close" : "chat" }}</mat-icon>
         </button>
       </main>
     }
@@ -1004,53 +2702,158 @@
     <main class="dashboard page-section">
       <div class="dashboard-heading">
         <div>
-          <p class="eyebrow green">SOLINK {{ employeeRole === 'dm' ? 'DISTRICT' : 'STORE' }} OPERATIONS CENTER</p>
-          <h1>{{ employeeRole === 'dm' ? 'Chesapeake Area Review' : 'Future Store #2031' }}</h1>
-          <p>{{ employeeRole === 'dm' ? 'District-manager review of the Future Store #2031 concept.' : 'Here’s what’s happening across your store right now.' }}</p>
+          <p class="eyebrow green">
+            SOLINK {{ employeeRole === "dm" ? "DISTRICT" : "STORE" }} OPERATIONS
+            CENTER
+          </p>
+          <h1>
+            {{
+              employeeRole === "dm"
+                ? "Chesapeake Area Review"
+                : "Future Store #2031"
+            }}
+          </h1>
+          <p>
+            {{
+              employeeRole === "dm"
+                ? "District-manager review of the Future Store #2031 concept."
+                : "Here’s what’s happening across your store right now."
+            }}
+          </p>
         </div>
-        <div class="manager-header-actions"><button (click)="setView('employee')">Back to Employee Portal</button><div class="live-indicator"><span></span> Live • Updated just now</div></div>
+        <div class="manager-header-actions">
+          <button (click)="setView('employee')">Back to Employee Portal</button>
+          <div class="live-indicator">
+            <span></span> Live • Updated just now
+          </div>
+        </div>
       </div>
 
       <div class="kpi-grid">
         @for (kpi of kpis; track kpi.label) {
           <article class="kpi-card {{ kpi.tone }}">
-            <mat-icon>{{ kpi.icon }}</mat-icon><span>{{ kpi.label }}</span><strong>{{ kpi.value }}</strong>
+            <mat-icon>{{ kpi.icon }}</mat-icon
+            ><span>{{ kpi.label }}</span
+            ><strong>{{ kpi.value }}</strong>
           </article>
         }
       </div>
 
       <div class="dashboard-grid">
         <article class="ops-panel stocking-panel">
-          <div class="panel-title"><div><span>LIVE INVENTORY FLOW</span><h2>Truck → backroom → sales floor</h2></div><mat-icon>inventory</mat-icon></div>
-          <div class="flow-row">
-            <div><mat-icon>local_shipping</mat-icon><strong>2,180</strong><span>Truck units</span></div>
-            <mat-icon>arrow_forward</mat-icon>
-            <div><mat-icon>warehouse</mat-icon><strong>1,245</strong><span>Backroom</span></div>
-            <mat-icon>arrow_forward</mat-icon>
-            <div><mat-icon>storefront</mat-icon><strong>935</strong><span>Sales floor</span></div>
+          <div class="panel-title">
+            <div>
+              <span>LIVE INVENTORY FLOW</span>
+              <h2>Truck → backroom → sales floor</h2>
+            </div>
+            <mat-icon>inventory</mat-icon>
           </div>
-          <div class="completion"><span><strong>Restocking completion</strong><b>78%</b></span><div><i></i></div></div>
+          <div class="flow-row">
+            <div>
+              <mat-icon>local_shipping</mat-icon><strong>2,180</strong
+              ><span>Truck units</span>
+            </div>
+            <mat-icon>arrow_forward</mat-icon>
+            <div>
+              <mat-icon>warehouse</mat-icon><strong>1,245</strong
+              ><span>Backroom</span>
+            </div>
+            <mat-icon>arrow_forward</mat-icon>
+            <div>
+              <mat-icon>storefront</mat-icon><strong>935</strong
+              ><span>Sales floor</span>
+            </div>
+          </div>
+          <div class="completion">
+            <span><strong>Restocking completion</strong><b>78%</b></span>
+            <div><i></i></div>
+          </div>
         </article>
 
         <article class="ops-panel alert-panel">
-          <div class="panel-title"><div><span>NEEDS ATTENTION</span><h2>Low-stock alerts</h2></div><b>3</b></div>
-          <div class="alert-row"><span class="critical"></span><div><strong>Aisle 6 • Paper towels</strong><small>2 units on shelf</small></div><button (click)="setView('employee')">Assign</button></div>
-          <div class="alert-row"><span class="warning"></span><div><strong>Aisle 3 • Balloons</strong><small>6 units on shelf</small></div><button (click)="setView('employee')">Assign</button></div>
-          <div class="alert-row"><span class="warning"></span><div><strong>Aisle 8 • Batteries</strong><small>53 in backroom</small></div><button (click)="setView('employee')">View</button></div>
+          <div class="panel-title">
+            <div>
+              <span>NEEDS ATTENTION</span>
+              <h2>Low-stock alerts</h2>
+            </div>
+            <b>3</b>
+          </div>
+          <div class="alert-row">
+            <span class="critical"></span>
+            <div>
+              <strong>Aisle 6 • Paper towels</strong
+              ><small>2 units on shelf</small>
+            </div>
+            <button (click)="setView('employee')">Assign</button>
+          </div>
+          <div class="alert-row">
+            <span class="warning"></span>
+            <div>
+              <strong>Aisle 3 • Balloons</strong><small>6 units on shelf</small>
+            </div>
+            <button (click)="setView('employee')">Assign</button>
+          </div>
+          <div class="alert-row">
+            <span class="warning"></span>
+            <div>
+              <strong>Aisle 8 • Batteries</strong><small>53 in backroom</small>
+            </div>
+            <button (click)="setView('employee')">View</button>
+          </div>
         </article>
 
         <article class="ops-panel aisle-panel">
-          <div class="panel-title"><div><span>SHELF HEALTH</span><h2>Stock by aisle</h2></div><strong>88% avg.</strong></div>
-          @for (aisle of [{n: 4, p: 68}, {n: 7, p: 92}, {n: 8, p: 81}, {n: 10, p: 96}, {n: 12, p: 74}]; track aisle.n) {
-            <div class="aisle-progress"><span>Aisle {{ aisle.n }}</span><div><i [style.width.%]="aisle.p"></i></div><strong>{{ aisle.p }}%</strong></div>
+          <div class="panel-title">
+            <div>
+              <span>SHELF HEALTH</span>
+              <h2>Stock by aisle</h2>
+            </div>
+            <strong>88% avg.</strong>
+          </div>
+          @for (
+            aisle of [
+              { n: 4, p: 68 },
+              { n: 7, p: 92 },
+              { n: 8, p: 81 },
+              { n: 10, p: 96 },
+              { n: 12, p: 74 },
+            ];
+            track aisle.n
+          ) {
+            <div class="aisle-progress">
+              <span>Aisle {{ aisle.n }}</span>
+              <div><i [style.width.%]="aisle.p"></i></div>
+              <strong>{{ aisle.p }}%</strong>
+            </div>
           }
         </article>
 
         <article class="ops-panel traffic-panel">
-          <div class="panel-title"><div><span>ANONYMOUS TRAFFIC</span><h2>Store activity heat map</h2></div><span>Last 30 min.</span></div>
+          <div class="panel-title">
+            <div>
+              <span>ANONYMOUS TRAFFIC</span>
+              <h2>Store activity heat map</h2>
+            </div>
+            <span>Last 30 min.</span>
+          </div>
           <div class="heat-map">
-            @for (cell of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]; track cell) {
-              <i [class.hot]="cell === 9 || cell === 10 || cell === 15" [class.warm]="cell === 4 || cell === 8 || cell === 14 || cell === 16 || cell === 21"></i>
+            @for (
+              cell of [
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+                19, 20, 21, 22, 23, 24,
+              ];
+              track cell
+            ) {
+              <i
+                [class.hot]="cell === 9 || cell === 10 || cell === 15"
+                [class.warm]="
+                  cell === 4 ||
+                  cell === 8 ||
+                  cell === 14 ||
+                  cell === 16 ||
+                  cell === 21
+                "
+              ></i>
             }
           </div>
           <p>Highest traffic: Grocery and seasonal endcaps</p>
@@ -1058,52 +2861,156 @@
       </div>
 
       <section class="manager-predictions">
-        <div class="portal-card-head"><div><span>BUCKY PREDICTIONS</span><h2>What the store may need next</h2></div><mat-icon>auto_awesome</mat-icon></div>
+        <div class="portal-card-head">
+          <div>
+            <span>BUCKY PREDICTIONS</span>
+            <h2>What the store may need next</h2>
+          </div>
+          <mat-icon>auto_awesome</mat-icon>
+        </div>
         <div>
-          <article><span>💧</span><p>“Bottled water may sell out by 4:00 PM.”</p><button (click)="setView('employee')">Create task</button></article>
-          <article><span>🏫</span><p>“Expect a rush after school from 3:00–5:00 PM.”</p><button (click)="setView('employee')">Plan coverage</button></article>
-          <article><span>🎃</span><p>“Restock Halloween candy before noon.”</p><button (click)="setView('employee')">Assign</button></article>
-          <article><span>🛒</span><p>“Open one more checkout in 10 minutes.”</p><button (click)="setView('employee')">Notify lead</button></article>
+          <article>
+            <span>💧</span>
+            <p>“Bottled water may sell out by 4:00 PM.”</p>
+            <button (click)="setView('employee')">Create task</button>
+          </article>
+          <article>
+            <span>🏫</span>
+            <p>“Expect a rush after school from 3:00–5:00 PM.”</p>
+            <button (click)="setView('employee')">Plan coverage</button>
+          </article>
+          <article>
+            <span>🎃</span>
+            <p>“Restock Halloween candy before noon.”</p>
+            <button (click)="setView('employee')">Assign</button>
+          </article>
+          <article>
+            <span>🛒</span>
+            <p>“Open one more checkout in 10 minutes.”</p>
+            <button (click)="setView('employee')">Notify lead</button>
+          </article>
         </div>
       </section>
 
       <section class="digital-twin">
-        <div class="portal-card-head"><div><span>LIVE DIGITAL TWIN</span><h2>Store activity and inventory overlay</h2></div><b>Powered by Solink</b></div>
+        <div class="portal-card-head">
+          <div>
+            <span>LIVE DIGITAL TWIN</span>
+            <h2>Store activity and inventory overlay</h2>
+          </div>
+          <b>Powered by Solink</b>
+        </div>
         <div class="twin-layout">
           <div class="twin-map">
-            @for (aisle of [1,2,3,4,5,6,7,8,9,10,11,12]; track aisle) {
-              <div class="twin-aisle"><span>A{{ aisle }}</span><i [class.low]="aisle === 4 || aisle === 6" [class.urgent]="aisle === 8"></i></div>
+            @for (
+              aisle of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+              track aisle
+            ) {
+              <div class="twin-aisle">
+                <span>A{{ aisle }}</span
+                ><i
+                  [class.low]="aisle === 4 || aisle === 6"
+                  [class.urgent]="aisle === 8"
+                ></i>
+              </div>
             }
-            <i class="twin-dot blue one"></i><i class="twin-dot blue two"></i><i class="twin-dot purple"></i><i class="twin-dot orange one"></i><i class="twin-dot orange two"></i>
+            <i class="twin-dot blue one"></i><i class="twin-dot blue two"></i
+            ><i class="twin-dot purple"></i><i class="twin-dot orange one"></i
+            ><i class="twin-dot orange two"></i>
           </div>
           <div class="twin-insight">
             <img src="bucky.png" alt="" />
             <span>BUCKY RECOMMENDS</span>
-            <p>Move one associate from Household to Snacks. Customer traffic has increased there.</p>
+            <p>
+              Move one associate from Household to Snacks. Customer traffic has
+              increased there.
+            </p>
             <button (click)="setView('employee')">Review staffing</button>
-            <div class="twin-legend"><span><i class="green"></i>Fully stocked</span><span><i class="yellow"></i>Needs attention</span><span><i class="red"></i>Restock now</span><span><i class="blue"></i>Associate</span><span><i class="purple"></i>Truck activity</span><span><i class="orange"></i>High traffic</span></div>
+            <div class="twin-legend">
+              <span><i class="green"></i>Fully stocked</span
+              ><span><i class="yellow"></i>Needs attention</span
+              ><span><i class="red"></i>Restock now</span
+              ><span><i class="blue"></i>Associate</span
+              ><span><i class="purple"></i>Truck activity</span
+              ><span><i class="orange"></i>High traffic</span>
+            </div>
           </div>
         </div>
       </section>
 
-      @if (employeeRole === 'sm' || employeeRole === 'dm' || employeeRole === 'ap') {
+      @if (
+              employeeRole === "sm" || employeeRole === "dm" || employeeRole === "asm"
+      ) {
         <section class="security-dashboard">
-          <div class="portal-card-head"><div><span>RESTRICTED ACCESS</span><h2>Safety &amp; Asset Protection</h2></div><b>{{ employeeRoleLabel }}</b></div>
-          <div class="security-grid">
-            <article><mat-icon>point_of_sale</mat-icon><div><strong>Register exception</strong><span>Refund review • Register 3</span></div><b>Review</b></article>
-            <article><mat-icon>door_open</mat-icon><div><strong>Emergency exit</strong><span>All exits secure</span></div><b class="safe">Clear</b></article>
-            <article><mat-icon>shield</mat-icon><div><strong>High-risk area</strong><span>Seasonal camera alert</span></div><b>Review</b></article>
-            <article><mat-icon>thermostat</mat-icon><div><strong>Temperature</strong><span>Frozen section: 1°F</span></div><b class="safe">Normal</b></article>
-            <article><mat-icon>videocam</mat-icon><div><strong>Camera playback</strong><span>24 simulated cameras online</span></div><b>Open</b></article>
-            <article><mat-icon>assignment</mat-icon><div><strong>Incident reports</strong><span>No open critical reports</span></div><b class="safe">Clear</b></article>
+          <div class="portal-card-head">
+            <div>
+              <span>RESTRICTED ACCESS</span>
+              <h2>Safety &amp; Asset Protection</h2>
+            </div>
+            <b>{{ employeeRoleLabel }}</b>
           </div>
-          <p><mat-icon>privacy_tip</mat-icon> These tools are designed to protect employees, customers, and inventory. The concept uses privacy-focused events, not individual worker monitoring.</p>
+          <div class="security-grid">
+            <article>
+              <mat-icon>point_of_sale</mat-icon>
+              <div>
+                <strong>Register exception</strong
+                ><span>Refund review • Register 3</span>
+              </div>
+              <b>Review</b>
+            </article>
+            <article>
+              <mat-icon>door_open</mat-icon>
+              <div>
+                <strong>Emergency exit</strong><span>All exits secure</span>
+              </div>
+              <b class="safe">Clear</b>
+            </article>
+            <article>
+              <mat-icon>shield</mat-icon>
+              <div>
+                <strong>High-risk area</strong
+                ><span>Seasonal camera alert</span>
+              </div>
+              <b>Review</b>
+            </article>
+            <article>
+              <mat-icon>thermostat</mat-icon>
+              <div>
+                <strong>Temperature</strong><span>Frozen section: 1°F</span>
+              </div>
+              <b class="safe">Normal</b>
+            </article>
+            <article>
+              <mat-icon>videocam</mat-icon>
+              <div>
+                <strong>Camera playback</strong
+                ><span>24 simulated cameras online</span>
+              </div>
+              <b>Open</b>
+            </article>
+            <article>
+              <mat-icon>assignment</mat-icon>
+              <div>
+                <strong>Incident reports</strong
+                ><span>No open critical reports</span>
+              </div>
+              <b class="safe">Clear</b>
+            </article>
+          </div>
+          <p>
+            <mat-icon>privacy_tip</mat-icon> These tools are designed to protect
+            employees, customers, and inventory. The concept uses
+            privacy-focused events, not individual worker monitoring.
+          </p>
         </section>
       }
 
       <div class="manager-note">
         <mat-icon>privacy_tip</mat-icon>
-        <span><strong>Privacy-conscious insights</strong> Traffic patterns are anonymous and never identify individual shoppers.</span>
+        <span
+          ><strong>Privacy-conscious insights</strong> Traffic patterns are
+          anonymous and never identify individual shoppers.</span
+        >
       </div>
     </main>
   }
@@ -1111,107 +3018,299 @@
   @if (customerAccountOpen) {
     <div class="account-modal" (click)="customerAccountOpen = false">
       <section (click)="$event.stopPropagation()">
-        <button class="modal-close" (click)="customerAccountOpen = false"><mat-icon>close</mat-icon></button>
+        <button class="modal-close" (click)="customerAccountOpen = false">
+          <mat-icon>close</mat-icon>
+        </button>
         @if (!customerLoggedIn) {
-          <span class="section-tag"><mat-icon>person</mat-icon> OPTIONAL CUSTOMER ACCOUNT</span>
+          <span class="section-tag"
+            ><mat-icon>person</mat-icon> OPTIONAL CUSTOMER ACCOUNT</span
+          >
           <h2>Personalize your value finds.</h2>
-          <p>This class demo stores the profile only in this browser. It does not contact a real customer system.</p>
-          <label>Name <input [(ngModel)]="customerName" placeholder="Your name" /></label>
-          <label>Email <input [(ngModel)]="customerEmail" type="email" placeholder="you@example.com" /></label>
-          <label>What are you interested in?
+          <p>
+            This class demo stores the profile only in this browser. It does not
+            contact a real customer system.
+          </p>
+          <label
+            >Name <input [(ngModel)]="customerName" placeholder="Your name"
+          /></label>
+          <label
+            >Email
+            <input
+              [(ngModel)]="customerEmail"
+              type="email"
+              placeholder="you@example.com"
+          /></label>
+          <label
+            >What are you interested in?
             <select [(ngModel)]="customerPreference">
-              <option>Deals & Dollar Zone</option><option>Party Planning</option><option>Home & Organization</option>
-              <option>School & Classroom</option><option>Snacks & Movie Night</option><option>Seasonal Finds</option>
+              <option>Deals & Dollar Zone</option>
+              <option>Party Planning</option>
+              <option>Home & Organization</option>
+              <option>School & Classroom</option>
+              <option>Snacks & Movie Night</option>
+              <option>Seasonal Finds</option>
             </select>
           </label>
-          @if (accountMessage) { <div class="login-error">{{ accountMessage }}</div> }
-          <button class="account-submit" (click)="loginCustomer()">Create Demo Profile</button>
-          <small>By continuing, you opt in to simulated recommendations. No data leaves this device.</small>
+          @if (accountMessage) {
+            <div class="login-error">{{ accountMessage }}</div>
+          }
+          <button class="account-submit" (click)="loginCustomer()">
+            Create Demo Profile
+          </button>
+          <small
+            >By continuing, you opt in to simulated recommendations. No data
+            leaves this device.</small
+          >
         } @else {
-          <span class="section-tag"><mat-icon>verified</mat-icon> DEMO PROFILE ACTIVE</span>
-          <h2>Hi, {{ customerName || 'Value Shopper' }}.</h2>
-          <p>Your current recommendation preference is <strong>{{ customerPreference }}</strong>.</p>
-          <button class="account-submit" (click)="customerAccountOpen = false">View my recommendations</button>
-          <button class="signout-link" (click)="logoutCustomer(); customerAccountOpen = false">Sign out</button>
+          <span class="section-tag"
+            ><mat-icon>verified</mat-icon> DEMO PROFILE ACTIVE</span
+          >
+          <h2>Hi, {{ customerName || "Value Shopper" }}.</h2>
+          <p>
+            Your current recommendation preference is
+            <strong>{{ customerPreference }}</strong
+            >.
+          </p>
+          <button class="account-submit" (click)="customerAccountOpen = false">
+            View my recommendations
+          </button>
+          <button
+            class="signout-link"
+            (click)="logoutCustomer(); customerAccountOpen = false"
+          >
+            Sign out
+          </button>
         }
       </section>
     </div>
   }
 
   @if (shareFindOpen) {
-    <div class="account-modal social-share-modal" (click)="shareFindOpen = false">
+    <div
+      class="account-modal social-share-modal"
+      (click)="shareFindOpen = false"
+    >
       <section (click)="$event.stopPropagation()">
-        <button class="modal-close" (click)="shareFindOpen = false"><mat-icon>close</mat-icon></button>
-        <span class="section-tag"><mat-icon>add_a_photo</mat-icon> #DOLLARTREE COMMUNITY</span>
+        <button class="modal-close" (click)="shareFindOpen = false">
+          <mat-icon>close</mat-icon>
+        </button>
+        <span class="section-tag"
+          ><mat-icon>add_a_photo</mat-icon> #DOLLARTREE COMMUNITY</span
+        >
         <h2>Share your find.</h2>
-        <p>This is a simulated social post for the classroom demonstration. No photo or information is uploaded.</p>
-        <div class="share-preview"><span>✨</span><div><strong>{{ shareFindProduct }}</strong><small>Dollar Tree Future Store #2031 • Chesapeake</small></div></div>
-        <label>What did you find?
+        <p>
+          This is a simulated social post for the classroom demonstration. No
+          photo or information is uploaded.
+        </p>
+        <div class="share-preview">
+          <span>✨</span>
+          <div>
+            <strong>{{ shareFindProduct }}</strong
+            ><small>Dollar Tree Future Store #2031 • Chesapeake</small>
+          </div>
+        </div>
+        <label
+          >What did you find?
           <select [(ngModel)]="shareFindProduct">
-            <option>My Dollar Tree find</option><option>Dollar Zone discovery</option><option>DIY creation</option>
-            <option>Party setup</option><option>Seasonal find</option><option>Home organization idea</option>
+            <option>My Dollar Tree find</option>
+            <option>Dollar Zone discovery</option>
+            <option>DIY creation</option>
+            <option>Party setup</option>
+            <option>Seasonal find</option>
+            <option>Home organization idea</option>
           </select>
         </label>
-        <label>Caption
-          <textarea [(ngModel)]="shareFindCaption" rows="3" placeholder="Tell the community why you love this find..."></textarea>
+        <label
+          >Caption
+          <textarea
+            [(ngModel)]="shareFindCaption"
+            rows="3"
+            placeholder="Tell the community why you love this find..."
+          ></textarea>
         </label>
-        @if (socialThankYou) { <div class="social-success">{{ socialThankYou }}</div> }
-        <button class="account-submit" (click)="submitSocialFind()">Add to Demo Community Wall</button>
+        @if (socialThankYou) {
+          <div class="social-success">{{ socialThankYou }}</div>
+        }
+        <button class="account-submit" (click)="submitSocialFind()">
+          Add to Demo Community Wall
+        </button>
         <small>Demo only • Nothing is posted publicly</small>
       </section>
     </div>
   }
 
-  @if (chatOpen && activeView !== 'employee' && activeView !== 'manager') {
+  @if (chatOpen && activeView !== "employee" && activeView !== "manager") {
     <aside class="chat-window" aria-label="Chat with Bucky">
       <header class="chat-header">
         <div class="mini-bot"><img src="bucky.png" alt="" /></div>
-        <div><strong>Bucky</strong><span><i></i> Online • Usually replies instantly</span></div>
-        <button (click)="toggleChat()" aria-label="Close chat"><mat-icon>close</mat-icon></button>
+        <div>
+          <strong>Bucky</strong
+          ><span><i></i> Online • Usually replies instantly</span>
+        </div>
+        <button (click)="toggleChat()" aria-label="Close chat">
+          <mat-icon>close</mat-icon>
+        </button>
       </header>
       <div class="chat-messages">
         @for (message of messages; track $index) {
           <div class="message" [class.customer]="message.author === 'customer'">
-            @if (message.author === 'bucky') { <span class="message-avatar"><img src="bucky.png" alt="" /></span> }
+            @if (message.author === "bucky") {
+              <span class="message-avatar"><img src="bucky.png" alt="" /></span>
+            }
             <div class="message-content">
               <p>{{ message.text }}</p>
-              @if (message.detail) { <span>{{ message.detail }}</span> }
+              @if (message.detail) {
+                <span>{{ message.detail }}</span>
+              }
               @if (message.items?.length) {
                 <ul>
-                  @for (item of message.items; track item) { <li><mat-icon>check_circle</mat-icon>{{ item }}</li> }
+                  @for (item of message.items; track item) {
+                    <li><mat-icon>check_circle</mat-icon>{{ item }}</li>
+                  }
                 </ul>
               }
               @if (message.products?.length) {
                 <div class="chat-product-results">
                   @for (product of message.products; track product.productId) {
                     <article>
-                      <span class="chat-product-art">{{ product.image }}</span>
-                      <div><strong>{{ product.name }}</strong><small>{{ product.price | currency }} • {{ product.inventoryStatus }} • Aisle {{ product.aisle }}</small></div>
+                      <span class="chat-product-art">
+                        @if (isProductPhoto(product.image)) {
+                          <img [src]="product.image" [alt]="product.name" />
+                        } @else {
+                          {{ product.image }}
+                        }
+                      </span>
+                      <div>
+                        <strong>{{ product.name }}</strong
+                        ><small
+                          >{{ product.price | currency }} •
+                          {{ product.inventoryStatus }} • Aisle
+                          {{ product.aisle }}</small
+                        >
+                      </div>
                       <div class="chat-product-actions">
-                        <button (click)="addProduct(product)" [disabled]="product.totalInventory === 0" title="Add to cart"><mat-icon>add_shopping_cart</mat-icon></button>
-                        <button (click)="showOnMap(product)" title="Show on map"><mat-icon>map</mat-icon></button>
-                        <button (click)="askAboutProduct(product)" title="Ask about inventory"><mat-icon>inventory_2</mat-icon></button>
+                        <button
+                          (click)="addProduct(product)"
+                          [disabled]="product.totalInventory === 0"
+                          title="Add to cart"
+                        >
+                          <mat-icon>add_shopping_cart</mat-icon>
+                        </button>
+                        <button
+                          (click)="showOnMap(product)"
+                          title="Show on map"
+                        >
+                          <mat-icon>map</mat-icon>
+                        </button>
+                        <button
+                          (click)="askAboutProduct(product)"
+                          title="Ask about inventory"
+                        >
+                          <mat-icon>inventory_2</mat-icon>
+                        </button>
                       </div>
                     </article>
                   }
                 </div>
               }
-              @if (message.type === 'map') {
-                <button class="message-action" (click)="currentProduct ? showOnMap(currentProduct) : openStoreMap()"><mat-icon>map</mat-icon> Show Me on the Store Map</button>
+              @if (message.recommendations?.length) {
+                <div class="chat-recommendations">
+                  <strong>Complete your trip with:</strong>
+                  <div>
+                    @for (
+                      product of message.recommendations;
+                      track product.productId
+                    ) {
+                      <button (click)="askAboutProduct(product)">
+                        <span>{{ product.image }}</span>
+                        {{ product.name }}
+                      </button>
+                    }
+                  </div>
+                  <small
+                    >Why these? They are commonly useful with the item you
+                    requested.</small
+                  >
+                  <footer>
+                    <button
+                      (click)="addRecommendations(message.recommendations!)"
+                    >
+                      Add All to Cart
+                    </button>
+                    <button
+                      (click)="showRecommendationRoute(message.recommendations!)"
+                    >
+                      Show on Map
+                    </button>
+                    <button
+                      (click)="
+                        findCheaperRecommendations(message.recommendations!)
+                      "
+                    >
+                      Find Cheaper Options
+                    </button>
+                    <button (click)="message.recommendations = []">
+                      No Thanks
+                    </button>
+                  </footer>
+                </div>
               }
-              @if (message.type === 'truck') {
+              @if (message.type === "map") {
+                <button
+                  class="message-action"
+                  (click)="
+                    currentProduct ? showOnMap(currentProduct) : openStoreMap()
+                  "
+                >
+                  <mat-icon>map</mat-icon> Show Me on the Store Map
+                </button>
+              }
+              @if (message.type === "truck") {
                 <div class="mini-progress"><i></i></div>
               }
-              @if (message.type === 'inventory') {
-                <div class="inventory-pills"><b>{{ message.products?.[0]?.shelfQuantity ?? currentProduct?.shelfQuantity ?? 14 }} shelf</b><b>{{ message.products?.[0]?.backroomQuantity ?? currentProduct?.backroomQuantity ?? 36 }} backroom</b></div>
+              @if (message.type === "inventory") {
+                <div class="inventory-pills">
+                  <b
+                    >{{
+                      message.products?.[0]?.shelfQuantity ??
+                        currentProduct?.shelfQuantity ??
+                        14
+                    }}
+                    shelf</b
+                  ><b
+                    >{{
+                      message.products?.[0]?.backroomQuantity ??
+                        currentProduct?.backroomQuantity ??
+                        36
+                    }}
+                    backroom</b
+                  >
+                </div>
               }
-              @if (message.type === 'list') {
+              @if (message.type === "list") {
                 <div class="recommendation-actions">
-                  <button class="message-action" (click)="addAllToCart(message.items?.length || 1)">
-                    <mat-icon>add_shopping_cart</mat-icon> Add everything
+                  <button
+                    class="message-action"
+                    (click)="addAllToCart(message.items?.length || 1)"
+                  >
+                    <mat-icon>add_shopping_cart</mat-icon> Add All to Cart
                   </button>
-                  <button class="message-action why" (click)="explainRecommendation()">
-                    <mat-icon>psychology_alt</mat-icon> Why Bucky recommended this
+                  <button
+                    class="message-action"
+                    (click)="
+                      currentProduct
+                        ? showOnMap(currentProduct)
+                        : openStoreMap()
+                    "
+                  >
+                    <mat-icon>map</mat-icon> Show on Map
+                  </button>
+                  <button
+                    class="message-action why"
+                    (click)="explainRecommendation()"
+                  >
+                    <mat-icon>psychology_alt</mat-icon> Why Bucky recommended
+                    this
                   </button>
                 </div>
               }
@@ -1220,38 +3319,123 @@
         }
       </div>
       <div class="chat-quick">
-        <button (click)="useQuickAction('Where are batteries?')">Find an item</button>
-        <button (click)="useQuickAction('Is toothpaste in stock?')">Check inventory</button>
-        <button (click)="useQuickAction('What products are still $1?')">$1 products</button>
-        <button (click)="useQuickAction('Help me plan a birthday party for under $20.')">Party under $20</button>
-        <button (click)="useQuickAction('Find paper towels on the map.')">Product map</button>
-        <button (click)="useQuickAction('What is arriving today?')">Arriving today</button>
+        <button (click)="useQuickAction('Where are batteries?')">
+          Find an item
+        </button>
+        <button (click)="useQuickAction('Is toothpaste in stock?')">
+          Check inventory
+        </button>
+        <button (click)="useQuickAction('What products are still $1?')">
+          $1 products
+        </button>
+        <button
+          (click)="
+            useQuickAction('Help me plan a birthday party for under $20.')
+          "
+        >
+          Party under $20
+        </button>
+        <button (click)="useQuickAction('Find paper towels on the map.')">
+          Product map
+        </button>
+        <button (click)="useQuickAction('What is arriving today?')">
+          Arriving today
+        </button>
         <button (click)="startSimilarSearch()">Search alternatives</button>
-        <button (click)="useQuickAction('Show me snacks under $3')">Under $3</button>
+        <button (click)="useQuickAction('Show me snacks under $3')">
+          Under $3
+        </button>
       </div>
       @if (similarSearchOpen) {
         <form class="similar-search-panel" (ngSubmit)="findSimilarProducts()">
-          <div><mat-icon>swap_horiz</mat-icon><span><strong>Find similar products</strong><small>What item are you replacing?</small></span><button type="button" (click)="similarSearchOpen = false"><mat-icon>close</mat-icon></button></div>
-          <label><mat-icon>search</mat-icon><input [(ngModel)]="similarSearchText" name="similarSearch" placeholder="Try: paper towels" autofocus /><button type="submit">Compare</button></label>
+          <div>
+            <mat-icon>swap_horiz</mat-icon
+            ><span
+              ><strong>Find similar products</strong
+              ><small>What item are you replacing?</small></span
+            ><button type="button" (click)="similarSearchOpen = false">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+          <label
+            ><mat-icon>search</mat-icon
+            ><input
+              [(ngModel)]="similarSearchText"
+              name="similarSearch"
+              placeholder="Try: paper towels"
+              autofocus
+            /><button type="submit">Compare</button></label
+          >
           <div class="search-examples">
-            <button type="button" (click)="similarSearchText = 'paper towels'; findSimilarProducts()">Paper towels</button>
-            <button type="button" (click)="similarSearchText = 'toothpaste'; findSimilarProducts()">Toothpaste</button>
-            <button type="button" (click)="similarSearchText = 'storage bins'; findSimilarProducts()">Storage bins</button>
+            <button
+              type="button"
+              (click)="
+                similarSearchText = 'paper towels'; findSimilarProducts()
+              "
+            >
+              Paper towels
+            </button>
+            <button
+              type="button"
+              (click)="similarSearchText = 'toothpaste'; findSimilarProducts()"
+            >
+              Toothpaste
+            </button>
+            <button
+              type="button"
+              (click)="
+                similarSearchText = 'storage bins'; findSimilarProducts()
+              "
+            >
+              Storage bins
+            </button>
           </div>
         </form>
       }
       <form class="chat-input" (ngSubmit)="submitPrompt()">
-        <button type="button" aria-label="Scan barcode" (click)="scanBarcode()"><mat-icon>qr_code_scanner</mat-icon></button>
-        <input [(ngModel)]="promptText" name="prompt" placeholder="Ask Bucky anything..." autocomplete="off" />
-        <button type="button" (click)="toggleVoice()" [class.active]="voiceEnabled" aria-label="Voice mode"><mat-icon>mic</mat-icon></button>
-        <button type="button" (click)="readLastResponse()" aria-label="Read Bucky response aloud"><mat-icon>volume_up</mat-icon></button>
-        <button class="send" type="submit" aria-label="Send message"><mat-icon>arrow_upward</mat-icon></button>
+        <button type="button" aria-label="Scan barcode" (click)="scanBarcode()">
+          <mat-icon>qr_code_scanner</mat-icon>
+        </button>
+        <input
+          [(ngModel)]="promptText"
+          name="prompt"
+          placeholder="Ask Bucky anything..."
+          autocomplete="off"
+        />
+        <button
+          type="button"
+          (click)="toggleVoice()"
+          [class.active]="voiceEnabled"
+          aria-label="Voice mode"
+        >
+          <mat-icon>mic</mat-icon>
+        </button>
+        <button
+          type="button"
+          (click)="readLastResponse()"
+          aria-label="Read Bucky response aloud"
+        >
+          <mat-icon>volume_up</mat-icon>
+        </button>
+        <button class="send" type="submit" aria-label="Send message">
+          <mat-icon>arrow_upward</mat-icon>
+        </button>
       </form>
-      <footer><mat-icon>auto_awesome</mat-icon> AI answers are part of a retail concept demo</footer>
+      <footer>
+        <mat-icon>auto_awesome</mat-icon> AI answers are part of a retail
+        concept demo
+      </footer>
     </aside>
   } @else {
-    <button class="chat-launcher" (click)="toggleChat()" aria-label="Open Bucky">
-      <span class="launcher-face"><img src="bucky.png" alt="" /></span><span><strong>Ask Bucky</strong><small>AI shopping assistant</small></span>
+    <button
+      class="chat-launcher"
+      (click)="toggleChat()"
+      aria-label="Open Bucky"
+    >
+      <span class="launcher-face"><img src="bucky.png" alt="" /></span
+      ><span
+        ><strong>Ask Bucky</strong><small>AI shopping assistant</small></span
+      >
       <i></i>
     </button>
   }
