@@ -212,9 +212,12 @@ export class HomeComponent {
     const urlParams = new URLSearchParams(window.location.search);
     const preview = urlParams.get('preview');
     const requestedView = urlParams.get('view');
-    if (preview === 'team') {
+    const isTeamPreview =
+      preview === 'team' || window.location.pathname.endsWith('/team-preview');
+    if (isTeamPreview) {
       this.activeView = 'employee';
-      window.history.replaceState({}, '', window.location.pathname);
+      this.employeeRole = 'associate';
+      this.employeeLoggedIn = true;
     } else if (requestedView === 'shop' || requestedView === 'map') {
       this.activeView = requestedView;
     }
